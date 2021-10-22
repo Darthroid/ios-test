@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -33,9 +34,74 @@
                                 <color key="separatorColor" red="0.79607843140000001" green="0.80784313730000001" blue="0.81960784310000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="80" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="MPw-Hy-Au7">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="88"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AXh-G2-OXA">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                            <subviews>
+                                                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9h0-Va-5eH">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="9Ov-yQ-zog">
+                                                            <rect key="frame" x="0.0" y="0.0" width="256" height="30"/>
+                                                            <subviews>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fzU-sZ-SVb">
+                                                                    <rect key="frame" x="20" y="0.0" width="30" height="30"/>
+                                                                    <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="14"/>
+                                                                    <color key="tintColor" red="0.14117647059999999" green="0.21176470589999999" blue="0.2901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <state key="normal" title="All">
+                                                                        <color key="titleColor" red="0.14117647058823529" green="0.21176470588235294" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <action selector="filterAllSelected" destination="pre-Wt-UOv" eventType="touchUpInside" id="bPl-b2-EoF"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2UW-08-uRc">
+                                                                    <rect key="frame" x="74" y="0.0" width="41" height="30"/>
+                                                                    <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="14"/>
+                                                                    <color key="tintColor" red="0.69411764710000001" green="0.72549019609999998" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <state key="normal" title="Chats">
+                                                                        <color key="titleColor" red="0.69411764705882351" green="0.72549019607843135" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <action selector="filterChatsSelected" destination="pre-Wt-UOv" eventType="touchUpInside" id="aaK-kn-gvs"/>
+                                                                    </connections>
+                                                                </button>
+                                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J0t-k6-ewY">
+                                                                    <rect key="frame" x="139" y="0.0" width="97" height="30"/>
+                                                                    <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="14"/>
+                                                                    <color key="tintColor" red="0.69411764710000001" green="0.72549019609999998" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    <state key="normal" title="Communities">
+                                                                        <color key="titleColor" red="0.69411764710000001" green="0.72549019609999998" blue="0.70588235290000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                                    </state>
+                                                                    <connections>
+                                                                        <action selector="filterCommunitiesSelected" destination="pre-Wt-UOv" eventType="touchUpInside" id="q3a-9Q-Vsg"/>
+                                                                    </connections>
+                                                                </button>
+                                                            </subviews>
+                                                            <edgeInsets key="layoutMargins" top="0.0" left="20" bottom="0.0" right="20"/>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="PAz-Y0-0tT" firstAttribute="top" secondItem="9Ov-yQ-zog" secondAttribute="top" id="Beb-c1-94e"/>
+                                                        <constraint firstItem="9Ov-yQ-zog" firstAttribute="leading" secondItem="PAz-Y0-0tT" secondAttribute="leading" id="IrO-gi-7db"/>
+                                                        <constraint firstItem="PAz-Y0-0tT" firstAttribute="bottom" secondItem="9Ov-yQ-zog" secondAttribute="bottom" id="cJn-rZ-f7H"/>
+                                                        <constraint firstItem="9Ov-yQ-zog" firstAttribute="trailing" secondItem="PAz-Y0-0tT" secondAttribute="trailing" id="i0Z-Fh-Ycd"/>
+                                                    </constraints>
+                                                    <viewLayoutGuide key="contentLayoutGuide" id="PAz-Y0-0tT"/>
+                                                    <viewLayoutGuide key="frameLayoutGuide" id="qWE-wu-aXI"/>
+                                                </scrollView>
+                                            </subviews>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                            <constraints>
+                                                <constraint firstItem="9h0-Va-5eH" firstAttribute="leading" secondItem="AXh-G2-OXA" secondAttribute="leading" id="Dz5-Hc-EUL"/>
+                                                <constraint firstAttribute="height" constant="44" id="Fpn-S0-19a"/>
+                                                <constraint firstAttribute="trailing" secondItem="9h0-Va-5eH" secondAttribute="trailing" id="NLi-NZ-2kQ"/>
+                                                <constraint firstAttribute="bottom" secondItem="9h0-Va-5eH" secondAttribute="bottom" id="qzz-aS-ksN"/>
+                                                <constraint firstItem="9h0-Va-5eH" firstAttribute="top" secondItem="AXh-G2-OXA" secondAttribute="top" id="xEJ-2b-iHE"/>
+                                            </constraints>
+                                        </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zAp-Gg-lES" customClass="SubscriptionsDirectoryHeaderView" customModule="Rocket_Chat" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                                             <subviews>
@@ -150,15 +216,25 @@
                                     <constraints>
                                         <constraint firstItem="zAp-Gg-lES" firstAttribute="top" secondItem="MPw-Hy-Au7" secondAttribute="top" id="6xa-e3-23o"/>
                                         <constraint firstAttribute="trailing" secondItem="7Cv-R3-fat" secondAttribute="trailing" id="90U-TE-8zJ"/>
+                                        <constraint firstItem="AXh-G2-OXA" firstAttribute="top" secondItem="MPw-Hy-Au7" secondAttribute="top" id="DdG-uP-Nm7"/>
+                                        <constraint firstAttribute="bottom" secondItem="AXh-G2-OXA" secondAttribute="bottom" id="ECf-b7-tLX"/>
                                         <constraint firstItem="zAp-Gg-lES" firstAttribute="leading" secondItem="MPw-Hy-Au7" secondAttribute="leading" id="GRR-vs-BRF"/>
+                                        <constraint firstItem="AXh-G2-OXA" firstAttribute="leading" secondItem="MPw-Hy-Au7" secondAttribute="leading" id="OYL-8v-hJW"/>
                                         <constraint firstAttribute="bottom" secondItem="7Cv-R3-fat" secondAttribute="bottom" id="cd3-bw-la1"/>
+                                        <constraint firstAttribute="trailing" secondItem="AXh-G2-OXA" secondAttribute="trailing" id="mPe-px-cjj"/>
                                         <constraint firstAttribute="trailing" secondItem="zAp-Gg-lES" secondAttribute="trailing" id="t3v-Sy-9UZ"/>
                                         <constraint firstItem="7Cv-R3-fat" firstAttribute="leading" secondItem="MPw-Hy-Au7" secondAttribute="leading" id="vjt-uc-yfw"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="zAp-Gg-lES"/>
+                                            <exclude reference="7Cv-R3-fat"/>
+                                        </mask>
+                                    </variation>
                                 </view>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellSubscription" rowHeight="86" id="EDM-8E-WsE" customClass="SubscriptionCell" customModule="Rocket_Chat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="112.5" width="320" height="86"/>
+                                        <rect key="frame" x="0.0" y="68.5" width="320" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="EDM-8E-WsE" id="77b-s3-dhx">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="86"/>
@@ -262,7 +338,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CellSubscriptionCondensed" rowHeight="75" id="1qY-V0-RQx" customClass="SubscriptionCellCondensed" customModule="Rocket_Chat" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="198.5" width="320" height="75"/>
+                                        <rect key="frame" x="0.0" y="154.5" width="320" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="1qY-V0-RQx" id="jUz-mp-O84">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="75"/>
@@ -357,9 +433,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="fKk-pZ-N3a" firstAttribute="leading" secondItem="Sgi-qY-oLC" secondAttribute="leading" id="1Z9-Vc-Iq7"/>
-                            <constraint firstItem="fKk-pZ-N3a" firstAttribute="top" secondItem="Sgi-qY-oLC" secondAttribute="top" id="4HB-ho-GDn"/>
                             <constraint firstAttribute="bottom" secondItem="fKk-pZ-N3a" secondAttribute="bottom" id="PuM-RZ-IR8"/>
                             <constraint firstAttribute="trailing" secondItem="fKk-pZ-N3a" secondAttribute="trailing" id="cOy-px-6DD"/>
+                            <constraint firstItem="fKk-pZ-N3a" firstAttribute="top" secondItem="BC2-s4-mxp" secondAttribute="top" id="t8n-ZN-Lmt"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
@@ -373,6 +449,9 @@
                     </navigationItem>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="filterAllButton" destination="fzU-sZ-SVb" id="SgM-Bm-bds"/>
+                        <outlet property="filterChatsButton" destination="2UW-08-uRc" id="LnY-L7-wm8"/>
+                        <outlet property="filterCommunitiesButton" destination="J0t-k6-ewY" id="Esb-87-rh2"/>
                         <outlet property="filterSeperator" destination="n9G-xO-EGZ" id="KEf-g1-6Iw"/>
                         <outlet property="imageViewDirectory" destination="uuc-te-zol" id="pKe-X4-xrk"/>
                         <outlet property="labelDirectory" destination="924-tm-gcf" id="eQH-iq-nDg"/>
@@ -454,6 +533,9 @@
         <image name="disclosureIndicator" width="7" height="14"/>
         <systemColor name="groupTableViewBackgroundColor">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
     </resources>
 </document>

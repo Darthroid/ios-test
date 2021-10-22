@@ -10,7 +10,7 @@ import Foundation
 import RealmSwift
 import SwiftyJSON
 
-enum SubscriptionType: String, Equatable {
+enum SubscriptionType: String, Equatable, CaseIterable {
     case directMessage = "d"
     case channel = "c"
     case group = "p"

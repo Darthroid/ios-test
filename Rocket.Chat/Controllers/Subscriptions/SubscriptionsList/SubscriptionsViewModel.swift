@@ -12,13 +12,7 @@ import DifferenceKit
 class SubscriptionsViewModel {
     var subscriptions: Results<Subscription>? {
         let results = Subscription.all(onlyJoined: !searchState.isSearching)
-
-        switch SubscriptionsSortingManager.selectedSortingOption {
-        case .activity:
-            return hasLastMessage ? results?.sortedByLastMessageDate() : results?.sortedByRoomUpdatedAt()
-        case .alphabetically:
-            return results?.sortedByName()
-        }
+		return hasLastMessage ? results?.sortedByLastMessageDate() : results?.sortedByRoomUpdatedAt()
     }
 
     enum SearchState {
@@ -35,6 +29,11 @@ class SubscriptionsViewModel {
         }
     }
 
+	var filterType: SubscriptionFilteringOption = .all {
+		didSet {
+			buildSections()
+		}
+	}
     var searchStateUpdated: ((_ oldValue: SearchState, _ searchState: SearchState) -> Void)?
     var searchState: SearchState = .notSearching {
         didSet {
@@ -95,38 +94,37 @@ class SubscriptionsViewModel {
         case .notSearching:
             var queryItems = queryBase
 
-            func filtered(using predicateFormat: String) -> Results<Subscription> {
-                let predicate = NSPredicate(format: predicateFormat)
-                let filteredResult = queryItems.filter(predicate)
-                queryItems = queryItems.filter(predicate.negation)
-                return filteredResult
-            }
+			func filtered(using predicates: [String]) -> Results<Subscription> {
+				let predicates = predicates
+					.map { NSPredicate(format: $0) }
+				let compoundPredicate = NSCompoundPredicate(type: .or, subpredicates: predicates)
+				let filteredResult = queryItems.filter(compoundPredicate)//filter(predicate)
+				queryItems = queryItems.filter(compoundPredicate.negation)
 
-            if SubscriptionsSortingManager.selectedGroupingOptions.contains(.unread) {
-                let queryData = filtered(using: "alert == true")
-                assorter.registerSection(name: localized("subscriptions.unreads"), objects: queryData)
-            }
+				return filteredResult
+			}
 
-            if SubscriptionsSortingManager.selectedGroupingOptions.contains(.favorites) {
-                let queryData = filtered(using: "favorite == true")
-                assorter.registerSection(name: localized("subscriptions.favorites"), objects: queryData)
-            }
+			let queryData: Results<Subscription>
 
-            if SubscriptionsSortingManager.selectedGroupingOptions.contains(.type) {
-                let queryDataChannels = filtered(using: "privateType == 'c'")
-                assorter.registerSection(name: localized("subscriptions.channels"), objects: queryDataChannels)
+			switch self.filterType {
+			case .all:
+				queryData = filtered(using: [
+					String(format: "privateType == '%@'", SubscriptionType.directMessage.rawValue),
+					String(format: "privateType == '%@'", SubscriptionType.channel.rawValue),
+					String(format: "privateType == '%@'", SubscriptionType.group.rawValue)
+				])
+			case .chats:
+				queryData = filtered(using: [
+					String(format: "privateType == '%@'", SubscriptionType.directMessage.rawValue)
+				])
+			case .communities:
+				queryData = filtered(using: [
+					String(format: "privateType == '%@'", SubscriptionType.channel.rawValue),
+					String(format: "privateType == '%@'", SubscriptionType.group.rawValue)
+				])
+			}
 
-                let queryDataGroups = filtered(using: "privateType == 'p'")
-                assorter.registerSection(name: localized("subscriptions.groups"), objects: queryDataGroups)
-
-                let queryDataDirectMessages = filtered(using: "privateType == 'd'")
-                assorter.registerSection(name: localized("subscriptions.direct_messages"), objects: queryDataDirectMessages)
-            } else {
-                let selectedGroupingOptions = SubscriptionsSortingManager.selectedGroupingOptions
-                let title = !selectedGroupingOptions.isEmpty ? localized("subscriptions.conversations") : ""
-                assorter.registerSection(name: title, objects: queryItems)
-            }
-
+			assorter.registerSection(name: "", objects: queryData)
             assorter.registerModel(model: queryBase)
         }
     }

@@ -17,7 +17,11 @@ final class SubscriptionsViewController: BaseViewController {
         case notSearching
     }
 
-    @IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var filterAllButton: UIButton!
+	@IBOutlet weak var filterChatsButton: UIButton!
+	@IBOutlet weak var filterCommunitiesButton: UIButton!
+
+	@IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var filterSeperator: UIView!
     @IBOutlet weak var labelSortingTitleDescription: UILabel! {
         didSet {
@@ -302,6 +306,25 @@ extension SubscriptionsViewController: UISearchBarDelegate {
         }
     }
 
+	func updateFiltersState() {
+		let semiBoldFont = UIFont(name: "Montserrat-SemiBold", size: 14)
+		let mediumFont = UIFont(name: "Montserrat-Medium", size: 14)
+		switch viewModel.filterType {
+		case .all:
+			filterAllButton.titleLabel?.font = semiBoldFont
+			filterChatsButton.titleLabel?.font = mediumFont
+			filterCommunitiesButton.titleLabel?.font = mediumFont
+		case .chats:
+			filterAllButton.titleLabel?.font = mediumFont
+			filterChatsButton.titleLabel?.font = semiBoldFont
+			filterCommunitiesButton.titleLabel?.font = mediumFont
+		case .communities:
+			filterAllButton.titleLabel?.font = mediumFont
+			filterChatsButton.titleLabel?.font = mediumFont
+			filterCommunitiesButton.titleLabel?.font = semiBoldFont
+		}
+	}
+
     private func shouldRespondToTap(recognizer: UITapGestureRecognizer, inset: CGFloat) -> Bool {
         guard
             let view = recognizer.view,
@@ -321,6 +344,21 @@ extension SubscriptionsViewController: UISearchBarDelegate {
             toggleSortingView()
         }
     }
+
+	@IBAction func filterAllSelected() {
+		viewModel.filterType = .all
+		updateFiltersState()
+	}
+
+	@IBAction func filterChatsSelected() {
+		viewModel.filterType = .chats
+		updateFiltersState()
+	}
+
+	@IBAction func filterCommunitiesSelected() {
+		viewModel.filterType = .communities
+		updateFiltersState()
+	}
 
     @objc func recognizeDirectoryTapGesture(_ recognizer: UITapGestureRecognizer) {
         guard let controller = UIStoryboard(name: "Directory", bundle: Bundle.main).instantiateInitialViewController() else { return }

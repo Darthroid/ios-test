@@ -19,6 +19,12 @@ enum SubscriptionsGroupingOption: String, CaseIterable {
     case favorites
 }
 
+enum SubscriptionFilteringOption: String, CaseIterable {
+	case all
+	case chats
+	case communities
+}
+
 struct SubscriptionsSortingManager {
 
     /**
