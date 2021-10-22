@@ -222,6 +222,9 @@ final class SubscriptionsViewController: BaseViewController {
 
 		self.navigationItem.leftBarButtonItem?.target = self
 		self.navigationItem.leftBarButtonItem?.action = #selector(prepareSearch)
+
+		self.navigationItem.rightBarButtonItem?.target = self
+		self.navigationItem.rightBarButtonItem?.action = #selector(plusButtonSelected)
 	}
 
     func setupSearchBar() {
@@ -357,6 +360,44 @@ extension SubscriptionsViewController: UISearchBarDelegate {
 	@IBAction func filterCommunitiesSelected() {
 		viewModel.filterType = .communities
 		updateFiltersState()
+	}
+
+	@objc func plusButtonSelected() {
+		let alertController = UIAlertController(title: "Create", message: nil, preferredStyle: .alert)
+
+		let directoryAction = UIAlertAction(title: "Directory", style: .default, handler: { _ in
+			guard let controller = UIStoryboard(name: "Directory", bundle: Bundle.main).instantiateInitialViewController() else { return }
+
+			if UIDevice.current.userInterfaceIdiom == .pad {
+				let nav = BaseNavigationController(rootViewController: controller)
+				nav.modalPresentationStyle = .pageSheet
+
+				self.present(nav, animated: true, completion: nil)
+			} else {
+				self.navigationController?.pushViewController(controller, animated: true)
+			}
+		})
+
+		let createChannelAction = UIAlertAction(title: "New Channel", style: .default, handler: { _ in
+			guard let controller = UIStoryboard(name: "New Room", bundle: Bundle.main).instantiateInitialViewController() else { return }
+
+			if UIDevice.current.userInterfaceIdiom == .pad {
+				let nav = BaseNavigationController(rootViewController: controller)
+				nav.modalPresentationStyle = .pageSheet
+
+				self.present(nav, animated: true, completion: nil)
+			} else {
+				self.navigationController?.present(controller, animated: true)
+			}
+		})
+
+		let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+
+		alertController.addAction(directoryAction)
+		alertController.addAction(createChannelAction)
+		alertController.addAction(cancelAction)
+
+		self.present(alertController, animated: true)
 	}
 
     @objc func recognizeDirectoryTapGesture(_ recognizer: UITapGestureRecognizer) {

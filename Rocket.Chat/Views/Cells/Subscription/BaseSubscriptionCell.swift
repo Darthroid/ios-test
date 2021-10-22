@@ -133,10 +133,13 @@ class BaseSubscriptionCell: SwipeTableViewCell, SubscriptionCellProtocol {
             viewStatus.isHidden = true
 //            iconRoom.isHidden = true
 
-            if let user = user {
-                userStatus = user.status
-				viewStatus.isHidden = user.status == .offline
-            }
+//            if let user = user {
+				// FIXME: force online status for demo
+				userStatus = .online
+				viewStatus.isHidden = false
+//				userStatus = user.status
+//				viewStatus.isHidden = user.status == .offline
+//            }
         } else {
 //            iconRoom.isHidden = false
             viewStatus.isHidden = true
