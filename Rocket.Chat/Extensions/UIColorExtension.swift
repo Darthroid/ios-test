@@ -73,7 +73,7 @@ extension UIColor {
     // MARK: Status
 
     static func RCOnline() -> UIColor {
-        return UIColor(rgb: 0x2DE0A5, alphaVal: 1)
+        return UIColor(rgb: 0x7CE757, alphaVal: 1)
     }
 
     static func RCAway() -> UIColor {

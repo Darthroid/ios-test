@@ -28,6 +28,8 @@ class BaseSubscriptionCell: SwipeTableViewCell, SubscriptionCellProtocol {
         didSet {
             viewStatus.backgroundColor = .RCInvisible()
             viewStatus.layer.masksToBounds = true
+			viewStatus.layer.borderColor = UIColor.white.cgColor
+			viewStatus.layer.borderWidth = 2
             viewStatus.layer.cornerRadius = 5
         }
     }
@@ -35,7 +37,7 @@ class BaseSubscriptionCell: SwipeTableViewCell, SubscriptionCellProtocol {
     var avatarView = AvatarView()
     @IBOutlet weak var avatarViewContainer: UIView! {
         didSet {
-            avatarViewContainer.layer.cornerRadius = 4
+            avatarViewContainer.layer.cornerRadius = 25
             avatarViewContainer.layer.masksToBounds = true
 
             avatarView.frame = avatarViewContainer.bounds
@@ -43,7 +45,7 @@ class BaseSubscriptionCell: SwipeTableViewCell, SubscriptionCellProtocol {
         }
     }
 
-    @IBOutlet weak var iconRoom: UIImageView!
+//    @IBOutlet weak var iconRoom: UIImageView!
     @IBOutlet weak var labelName: UILabel!
     @IBOutlet weak var labelUnread: UILabel!
     @IBOutlet weak var viewUnread: UIView! {
@@ -128,25 +130,26 @@ class BaseSubscriptionCell: SwipeTableViewCell, SubscriptionCellProtocol {
 
     fileprivate func updateStatus(subscription: Subscription, user: User?) {
         if subscription.type == .directMessage {
-            viewStatus.isHidden = false
-            iconRoom.isHidden = true
+            viewStatus.isHidden = true
+//            iconRoom.isHidden = true
 
             if let user = user {
                 userStatus = user.status
+				viewStatus.isHidden = user.status == .offline
             }
         } else {
-            iconRoom.isHidden = false
+//            iconRoom.isHidden = false
             viewStatus.isHidden = true
 
-            if subscription.isDiscussion {
-                iconRoom.image = UIImage(named: "Cell Subscription Discussion")
-            } else {
-                if subscription.type == .channel {
-                    iconRoom.image = UIImage(named: "Cell Subscription Hashtag")
-                } else {
-                    iconRoom.image = UIImage(named: "Cell Subscription Lock")
-                }
-            }
+//            if subscription.isDiscussion {
+//                iconRoom.image = UIImage(named: "Cell Subscription Discussion")
+//            } else {
+//                if subscription.type == .channel {
+//                    iconRoom.image = UIImage(named: "Cell Subscription Hashtag")
+//                } else {
+//                    iconRoom.image = UIImage(named: "Cell Subscription Lock")
+//                }
+//            }
         }
     }
 }
@@ -198,19 +201,13 @@ extension BaseSubscriptionCell {
         guard let theme = theme else { return }
 
         labelName.textColor = theme.titleText
-        iconRoom.tintColor = theme.auxiliaryText
+//        iconRoom.tintColor = theme.auxiliaryText
 
-        if let subscription = subscription {
-            if subscription.groupMentions > 0 || subscription.userMentions > 0 {
-                viewUnread.backgroundColor = theme.tintColor
-                labelUnread.backgroundColor = theme.tintColor
-                labelUnread.textColor = theme.backgroundColor
-            } else {
-                viewUnread.backgroundColor = theme.borderColor
-                labelUnread.backgroundColor = theme.borderColor
-                labelUnread.textColor = theme.bodyText
-            }
-        }
+			viewUnread.backgroundColor = theme.greenColor
+			labelUnread.backgroundColor = theme.greenColor
+			labelUnread.textColor = theme.backgroundColor
+			viewUnread.layer.borderColor = theme.backgroundColor.cgColor
+			viewUnread.layer.borderWidth = 2
 
         setSelected(isSelected, animated: false)
         setHighlighted(isHighlighted, animated: false)

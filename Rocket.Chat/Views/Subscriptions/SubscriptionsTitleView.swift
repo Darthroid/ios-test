@@ -25,32 +25,32 @@ final class SubscriptionsTitleView: UIView {
         }
     }
 
-    @IBOutlet weak var buttonServer: UIButton! {
-        didSet {
-            buttonServer.semanticContentAttribute = .forceRightToLeft
-            buttonServer.layer.cornerRadius = 5
-            buttonServer.layer.masksToBounds = true
-        }
-    }
+//    @IBOutlet weak var buttonServer: UIButton! {
+//        didSet {
+//            buttonServer.semanticContentAttribute = .forceRightToLeft
+//            buttonServer.layer.cornerRadius = 5
+//            buttonServer.layer.masksToBounds = true
+//        }
+//    }
 
     func updateServerName(name: String?) {
-        buttonServer.setTitle(name, for: .normal)
+//        buttonServer.setTitle(name, for: .normal)
     }
 
     func updateTitleImage(reverse: Bool = false) {
         guard AppManager.supportsMultiServer else {
-            buttonServer.setImage(nil, for: .normal)
+//            buttonServer.setImage(nil, for: .normal)
             return
         }
 
-        if let image = UIImage(named: "Server Selector")?.imageWithTint(theme?.tintColor ?? .RCBlue()) {
-            if reverse, let cgImage = image.cgImage {
-                let rotatedImage = UIImage(cgImage: cgImage, scale: image.scale, orientation: .downMirrored)
-                buttonServer.setImage(rotatedImage, for: .normal)
-            } else {
-                buttonServer.setImage(image, for: .normal)
-            }
-        }
+//        if let image = UIImage(named: "Server Selector")?.imageWithTint(theme?.tintColor ?? .RCBlue()) {
+//            if reverse, let cgImage = image.cgImage {
+//                let rotatedImage = UIImage(cgImage: cgImage, scale: image.scale, orientation: .downMirrored)
+//                buttonServer.setImage(rotatedImage, for: .normal)
+//            } else {
+//                buttonServer.setImage(image, for: .normal)
+//            }
+//        }
     }
 
     internal func updateConnectionState() {
@@ -82,9 +82,9 @@ final class SubscriptionsTitleView: UIView {
 extension SubscriptionsTitleView {
     override func applyTheme() {
         super.applyTheme()
-        guard let theme = theme else { return }
+//        guard let theme = theme else { return }
 
-        buttonServer.tintColor = theme.tintColor
-        buttonServer.setTitleColor(theme.tintColor, for: .normal)
+//        buttonServer.tintColor = theme.tintColor
+//        buttonServer.setTitleColor(theme.tintColor, for: .normal)
     }
 }

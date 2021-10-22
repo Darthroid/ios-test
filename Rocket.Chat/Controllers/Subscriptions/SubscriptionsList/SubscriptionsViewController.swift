@@ -72,7 +72,7 @@ final class SubscriptionsViewController: BaseViewController {
 
         super.viewDidLoad()
 
-        navigationItem.leftBarButtonItem?.accessibilityLabel = VOLocalizedString("channel.preferences.label")
+		setupNavBar()
 
         // If the device is not using the SplitView, we want to show
         // the 3D Touch preview for the cells
@@ -208,6 +208,17 @@ final class SubscriptionsViewController: BaseViewController {
         })
     }
 
+	func setupNavBar() {
+		self.navigationController?.navigationBar.barTintColor = .white
+		self.navigationController?.navigationBar.tintColor = UIColor(red: 0.695, green: 0.725, blue: 0.704, alpha: 1)
+		self.navigationController?.navigationBar.isTranslucent = false
+
+		self.navigationItem.leftBarButtonItem?.accessibilityLabel = VOLocalizedString("channel.preferences.label")
+
+		self.navigationItem.leftBarButtonItem?.target = self
+		self.navigationItem.leftBarButtonItem?.action = #selector(prepareSearch)
+	}
+
     func setupSearchBar() {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.obscuresBackgroundDuringPresentation = false
@@ -241,6 +252,9 @@ final class SubscriptionsViewController: BaseViewController {
         }
     }
 
+	@objc func prepareSearch() {
+		self.searchBar?.becomeFirstResponder()
+	}
 }
 
 extension SubscriptionsViewController: UISearchBarDelegate {
@@ -415,11 +429,11 @@ extension SubscriptionsViewController: UIViewControllerPreviewingDelegate {
 extension SubscriptionsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 71
+        return 86
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 71
+        return 86
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {

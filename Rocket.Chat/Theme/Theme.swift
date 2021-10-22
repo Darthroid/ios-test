@@ -28,6 +28,7 @@ class Theme: NSObject {
     @objc let controlText: UIColor
     @objc let auxiliaryText: UIColor
     @objc let tintColor: UIColor
+	@objc let greenColor: UIColor
     @objc let auxiliaryTintColor: UIColor
     @objc let actionTintColor: UIColor
     @objc let actionBackgroundColor: UIColor
@@ -67,6 +68,7 @@ class Theme: NSObject {
          controlText: UIColor,
          auxiliaryText: UIColor,
          tintColor: UIColor,
+		 greenColor: UIColor,
          auxiliaryTintColor: UIColor,
          actionTintColor: UIColor,
          actionBackgroundColor: UIColor,
@@ -85,6 +87,7 @@ class Theme: NSObject {
         self.controlText = controlText
         self.auxiliaryText = auxiliaryText
         self.tintColor = tintColor
+		self.greenColor = greenColor
         self.auxiliaryTintColor = auxiliaryTintColor
         self.actionTintColor = actionTintColor
         self.actionBackgroundColor = actionBackgroundColor
@@ -111,6 +114,7 @@ class Theme: NSObject {
         controlText: #colorLiteral(red: 0.3294117647, green: 0.3450980392, blue: 0.368627451, alpha: 1),
         auxiliaryText: #colorLiteral(red: 0.6117647059, green: 0.6352941176, blue: 0.6588235294, alpha: 1),
         tintColor: .RCBlue(),
+		greenColor: #colorLiteral(red: 0.486, green: 0.906, blue: 0.341, alpha: 1),
         auxiliaryTintColor: #colorLiteral(red: 0.03921568627, green: 0.2666666667, blue: 0.4117647059, alpha: 1),
         actionTintColor: #colorLiteral(red: 0.1137254902, green: 0.4549019608, blue: 0.9607843137, alpha: 1),
         actionBackgroundColor: #colorLiteral(red: 0.9098039216, green: 0.9490196078, blue: 1, alpha: 1),
@@ -131,6 +135,7 @@ class Theme: NSObject {
         controlText: #colorLiteral(red: 0.8549193462, green: 0.8697612629, blue: 0.903159703, alpha: 1),
         auxiliaryText: #colorLiteral(red: 0.5732198682, green: 0.5927470883, blue: 0.638310602, alpha: 1),
         tintColor: #colorLiteral(red: 0.1137254902, green: 0.4549019608, blue: 0.9607843137, alpha: 1),
+		greenColor: #colorLiteral(red: 0.486, green: 0.906, blue: 0.341, alpha: 1),
         auxiliaryTintColor: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1),
         actionTintColor: #colorLiteral(red: 0.1137254902, green: 0.4549019608, blue: 0.9607843137, alpha: 1),
         actionBackgroundColor: #colorLiteral(red: 0.9098039216, green: 0.9490196078, blue: 1, alpha: 1),
@@ -151,6 +156,7 @@ class Theme: NSObject {
         controlText: #colorLiteral(red: 0.8549193462, green: 0.8697612629, blue: 0.903159703, alpha: 1),
         auxiliaryText: #colorLiteral(red: 0.6980392157, green: 0.7224261515, blue: 0.7773035386, alpha: 1),
         tintColor: #colorLiteral(red: 0.1176470588, green: 0.6078431373, blue: 0.9960784314, alpha: 1),
+		greenColor: #colorLiteral(red: 0.486, green: 0.906, blue: 0.341, alpha: 1),
         auxiliaryTintColor: #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1),
         actionTintColor: #colorLiteral(red: 0.1176470588, green: 0.631372549, blue: 0.9960784314, alpha: 1),
         actionBackgroundColor: #colorLiteral(red: 0.9098039216, green: 0.9490196078, blue: 1, alpha: 1),

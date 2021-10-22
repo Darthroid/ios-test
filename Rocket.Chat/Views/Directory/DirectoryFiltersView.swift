@@ -175,6 +175,7 @@ extension DirectoryFiltersView {
             controlText: theme.controlText,
             auxiliaryText: theme.auxiliaryText,
             tintColor: theme.tintColor,
+			greenColor: theme.greenColor,
             auxiliaryTintColor: theme.auxiliaryTintColor,
             actionTintColor: theme.actionTintColor,
             actionBackgroundColor: theme.actionBackgroundColor,
