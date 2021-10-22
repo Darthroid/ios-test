@@ -161,7 +161,7 @@ final class PreferencesViewController: BaseTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = viewModel.title
+		navigationItem.title = viewModel.title
 
         navigationItem.leftBarButtonItem?.accessibilityLabel = VOLocalizedString("auth.close.label")
     }
