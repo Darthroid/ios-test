@@ -128,6 +128,7 @@ final class SubscriptionsViewController: BaseViewController {
 
         updateServerInformation()
 		updateFiltersState()
+		setupNavBar()
 
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: animated)
@@ -219,6 +220,9 @@ final class SubscriptionsViewController: BaseViewController {
 		self.navigationController?.navigationBar.isTranslucent = false
 
 		self.navigationItem.leftBarButtonItem?.accessibilityLabel = VOLocalizedString("channel.preferences.label")
+
+		self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+		self.navigationController?.navigationBar.shadowImage = UIImage()
 
 		self.navigationItem.leftBarButtonItem?.target = self
 		self.navigationItem.leftBarButtonItem?.action = #selector(prepareSearch)

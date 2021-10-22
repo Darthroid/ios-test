@@ -9,11 +9,23 @@
 import UIKit
 
 final class SubscriptionCell: BaseSubscriptionCell {
+	enum StatusIcon {
+		case sent
+		case read
+
+		var image: UIImage? {
+			switch self {
+			case .sent: return UIImage(named: "mstatus-sent")
+			case .read: return UIImage(named: "mstatus-read")
+			}
+		}
+	}
 
     static let identifier = "CellSubscription"
 
     @IBOutlet weak var labelLastMessage: UILabel!
     @IBOutlet weak var labelDate: UILabel!
+	@IBOutlet weak var messageStatusIcon: UIImageView!
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -28,10 +40,23 @@ final class SubscriptionCell: BaseSubscriptionCell {
 
         labelLastMessage.text = subscription.roomLastMessageText ?? localized("subscriptions.list.no_message")
 
-        if let roomLastMessage = subscription.roomLastMessage?.createdAt {
-            labelDate.text = dateFormatted(date: roomLastMessage)
+        if let roomLastMessage = subscription.roomLastMessage {
+			if let date = roomLastMessage.createdAt {
+				labelDate.text = dateFormatted(date: date)
+			} else {
+				labelDate.text = nil
+			}
+
+			if roomLastMessage.userIdentifier == AuthManager.currentUser()?.identifier {
+				self.messageStatusIcon.isHidden = false
+				let isRead = (subscription.lastSeen ?? Date()) >= (roomLastMessage.updatedAt ?? Date())
+				self.messageStatusIcon.image = isRead ? StatusIcon.read.image : StatusIcon.sent.image
+			} else {
+				self.messageStatusIcon.isHidden = true
+			}
         } else {
             labelDate.text = nil
+			messageStatusIcon.isHidden = true
         }
 
         super.updateSubscriptionInformation()
@@ -42,14 +67,12 @@ final class SubscriptionCell: BaseSubscriptionCell {
 
     override func updateViewForAlert(with subscription: Subscription) {
         super.updateViewForAlert(with: subscription)
-        labelDate.font = UIFont.systemFont(ofSize: labelDate.font.pointSize, weight: .bold)
-        labelLastMessage.font = UIFont.systemFont(ofSize: labelLastMessage.font.pointSize, weight: .medium)
+        labelLastMessage.font = UIFont(name: "Montserrat-SemiBold", size: 12)
     }
 
     override func updateViewForNoAlert(with subscription: Subscription) {
         super.updateViewForNoAlert(with: subscription)
-        labelDate.font = UIFont.systemFont(ofSize: labelDate.font.pointSize, weight: .regular)
-        labelLastMessage.font = UIFont.systemFont(ofSize: labelLastMessage.font.pointSize, weight: .regular)
+        labelLastMessage.font = UIFont(name: "Poppins-Medium", size: 12)
     }
 
     private func setLastMessageColor() {
@@ -68,18 +91,7 @@ final class SubscriptionCell: BaseSubscriptionCell {
     }
 
     private func setDateColor() {
-        guard
-            let theme = theme,
-            let subscription = subscription?.managedObject
-        else {
-            return
-        }
-
-        if subscription.unread > 0 || subscription.alert {
-            labelDate.textColor = theme.tintColor
-        } else {
-            labelDate.textColor = theme.auxiliaryText
-        }
+		labelDate.textColor = theme?.auxiliaryText
     }
 
     func dateFormatted(date: Date) -> String {

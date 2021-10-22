@@ -97,9 +97,6 @@ class BaseSubscriptionCell: SwipeTableViewCell, SubscriptionCellProtocol {
     }
 
     func updateViewForAlert(with subscription: Subscription) {
-        labelName.font = UIFont.systemFont(ofSize: labelName.font.pointSize, weight: .semibold)
-        labelUnread.font = UIFont.boldSystemFont(ofSize: labelUnread.font.pointSize)
-
         if subscription.unread > 0 {
             viewUnread.isHidden = false
             labelUnread.text =  "\(subscription.unread)"
@@ -109,8 +106,6 @@ class BaseSubscriptionCell: SwipeTableViewCell, SubscriptionCellProtocol {
     }
 
     func updateViewForNoAlert(with subscription: Subscription) {
-        labelName.font = UIFont.systemFont(ofSize: labelName.font.pointSize, weight: .medium)
-
         viewUnread.isHidden = true
         labelUnread.text =  nil
     }

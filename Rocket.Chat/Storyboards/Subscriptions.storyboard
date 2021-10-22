@@ -243,24 +243,36 @@
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aXx-4M-bZb">
                                                     <rect key="frame" x="105" y="23" width="195" height="40"/>
                                                     <subviews>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZmU-Wk-IfK">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZmU-Wk-IfK">
                                                             <rect key="frame" x="0.0" y="0.0" width="195" height="18"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IkN-GD-8NO">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="39.5" height="18"/>
+                                                                    <rect key="frame" x="0.0" y="0.5" width="39.5" height="17.5"/>
                                                                     <fontDescription key="fontDescription" name="Montserrat-SemiBold" family="Montserrat" pointSize="14"/>
                                                                     <color key="textColor" red="0.14117647058823529" green="0.21176470588235294" blue="0.29019607843137252" alpha="1" colorSpace="calibratedRGB"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="10:41 AM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcW-Pk-bqG">
-                                                                    <rect key="frame" x="144" y="0.0" width="51" height="18"/>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="height" constant="18" id="2Sb-Nl-AgS"/>
-                                                                    </constraints>
-                                                                    <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
-                                                                    <color key="textColor" red="0.69411764705882351" green="0.72549019607843135" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    <nil key="highlightedColor"/>
-                                                                </label>
+                                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="9nd-K0-PpF">
+                                                                    <rect key="frame" x="126" y="0.0" width="69" height="18"/>
+                                                                    <subviews>
+                                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H8n-Mc-49A">
+                                                                            <rect key="frame" x="0.0" y="4" width="10" height="10"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="10" id="Sgz-gy-BeO"/>
+                                                                                <constraint firstAttribute="width" constant="10" id="WxO-8z-Kw0"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="10:41 AM" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcW-Pk-bqG">
+                                                                            <rect key="frame" x="18" y="0.0" width="51" height="18"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="height" constant="18" id="2Sb-Nl-AgS"/>
+                                                                            </constraints>
+                                                                            <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
+                                                                            <color key="textColor" red="0.69411764705882351" green="0.72549019607843135" blue="0.70588235294117641" alpha="1" colorSpace="calibratedRGB"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
+                                                                    </subviews>
+                                                                </stackView>
                                                             </subviews>
                                                         </stackView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="200" verticalHuggingPriority="200" horizontalCompressionResistancePriority="500" verticalCompressionResistancePriority="500" preservesSuperviewLayoutMargins="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AoS-By-2a2">
@@ -333,6 +345,7 @@
                                             <outlet property="labelLastMessage" destination="AoS-By-2a2" id="g6i-ef-FdZ"/>
                                             <outlet property="labelName" destination="IkN-GD-8NO" id="1o7-7O-pS0"/>
                                             <outlet property="labelUnread" destination="c6A-bb-KeM" id="z3F-US-v0x"/>
+                                            <outlet property="messageStatusIcon" destination="H8n-Mc-49A" id="lRQ-9T-PSJ"/>
                                             <outlet property="viewStatus" destination="DkA-vH-8he" id="eT6-ZL-Spd"/>
                                             <outlet property="viewUnread" destination="zlJ-tz-XvT" id="YeT-tH-YFU"/>
                                         </connections>
