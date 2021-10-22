@@ -155,6 +155,7 @@
 "subscriptions.conversations" = "会話";
 "subscriptions.you" = "あなた";
 "subscriptions.messages" = "メッセージ";
+"subscriptions.chats" = "Chats"; //TODO
 "subscriptions.list.you_initial" = "あなた";
 "subscriptions.list.no_message" = "メッセージなし";
 "subscriptions.list.sent_an_attachment" = "添付ファイルを送信しました";

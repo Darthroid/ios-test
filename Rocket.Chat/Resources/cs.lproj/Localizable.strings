@@ -155,6 +155,7 @@
 "subscriptions.conversations" = "Conversations"; //TODO
 "subscriptions.you" = "you"; //TODO
 "subscriptions.messages" = "Messages"; //TODO
+"subscriptions.chats" = "Chats"; //TODO
 "subscriptions.list.you_initial" = "You"; //TODO
 "subscriptions.list.no_message" = "No message"; //TODO
 "subscriptions.list.sent_an_attachment" = "sent an attachment"; //TODO

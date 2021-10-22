@@ -155,6 +155,7 @@
 "subscriptions.conversations" = "對話";
 "subscriptions.you" = "你";
 "subscriptions.messages" = "訊息";
+"subscriptions.chats" = "Chats"; //TODO
 "subscriptions.list.you_initial" = "你";
 "subscriptions.list.no_message" = "還沒有訊息發送過喔";
 "subscriptions.list.sent_an_attachment" = "發送附件";

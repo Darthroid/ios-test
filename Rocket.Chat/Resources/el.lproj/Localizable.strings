@@ -155,6 +155,7 @@
 "subscriptions.conversations" = "Συνομιλίες";
 "subscriptions.you" = "εσείς";
 "subscriptions.messages" = "Μηνύματα";
+"subscriptions.chats" = "Chats"; //TODO
 "subscriptions.list.you_initial" = "Εσείς";
 "subscriptions.list.no_message" = "Κανένα μήνυμα";
 "subscriptions.list.sent_an_attachment" = "στείλτε ένα συνημμένο";

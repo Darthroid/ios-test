@@ -21,7 +21,7 @@ final class SubscriptionsTitleView: UIView {
 
     @IBOutlet weak var labelMessages: UILabel! {
         didSet {
-            labelMessages.text = localized("subscriptions.messages")
+            labelMessages.text = localized("subscriptions.chats")
         }
     }
 

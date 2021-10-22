@@ -127,6 +127,7 @@ final class SubscriptionsViewController: BaseViewController {
         SocketManager.addConnectionHandler(token: socketHandlerToken, handler: self)
 
         updateServerInformation()
+		updateFiltersState()
 
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: animated)
@@ -309,19 +310,17 @@ extension SubscriptionsViewController: UISearchBarDelegate {
 	func updateFiltersState() {
 		let semiBoldFont = UIFont(name: "Montserrat-SemiBold", size: 14)
 		let mediumFont = UIFont(name: "Montserrat-Medium", size: 14)
-		switch viewModel.filterType {
-		case .all:
-			filterAllButton.titleLabel?.font = semiBoldFont
-			filterChatsButton.titleLabel?.font = mediumFont
-			filterCommunitiesButton.titleLabel?.font = mediumFont
-		case .chats:
-			filterAllButton.titleLabel?.font = mediumFont
-			filterChatsButton.titleLabel?.font = semiBoldFont
-			filterCommunitiesButton.titleLabel?.font = mediumFont
-		case .communities:
-			filterAllButton.titleLabel?.font = mediumFont
-			filterChatsButton.titleLabel?.font = mediumFont
-			filterCommunitiesButton.titleLabel?.font = semiBoldFont
+		let selectedColor = UIColor(hex: "#24364A")
+		let unselectedColor = UIColor(hex: "#B1B9B4")
+
+		[(filterAllButton, viewModel.filterType == .all),
+		 (filterChatsButton, viewModel.filterType == .chats),
+		 (filterCommunitiesButton, viewModel.filterType == .communities)
+		]
+		.forEach {
+			$0.0?.titleLabel?.font = $0.1 ? semiBoldFont : mediumFont
+			$0.0?.setTitleColor($0.1 ? selectedColor : unselectedColor, for: .normal)
+			$0.0?.tintColor = $0.1 ? selectedColor : unselectedColor
 		}
 	}
 

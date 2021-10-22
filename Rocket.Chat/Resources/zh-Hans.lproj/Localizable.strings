@@ -155,6 +155,7 @@
 "subscriptions.conversations" = "对话";
 "subscriptions.you" = "你";
 "subscriptions.messages" = "消息";
+"subscriptions.chats" = "Chats"; //TODO
 "subscriptions.list.you_initial" = "你";
 "subscriptions.list.no_message" = "还没有信息发送过哦";
 "subscriptions.list.sent_an_attachment" = "发一个附件";

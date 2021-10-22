@@ -155,6 +155,7 @@
 "subscriptions.conversations" = "Диалоги";
 "subscriptions.you" = "вы";
 "subscriptions.messages" = "Сообщения";
+"subscriptions.chats" = "Чаты";
 "subscriptions.list.you_initial" = "Вы";
 "subscriptions.list.no_message" = "Нет сообщений";
 "subscriptions.list.sent_an_attachment" = "отправить вложение";

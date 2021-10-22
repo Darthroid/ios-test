@@ -155,6 +155,7 @@
 "subscriptions.conversations" = "Conversations";
 "subscriptions.you" = "you";
 "subscriptions.messages" = "Messages";
+"subscriptions.chats" = "Chats";
 "subscriptions.list.you_initial" = "You";
 "subscriptions.list.no_message" = "No message";
 "subscriptions.list.sent_an_attachment" = "sent an attachment";
