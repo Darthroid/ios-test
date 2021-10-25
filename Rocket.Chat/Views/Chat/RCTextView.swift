@@ -154,7 +154,7 @@ class HighlightLayoutManager: NSLayoutManager {
 		}
 		let gradient: CAGradientLayer = CAGradientLayer()
 
-		gradient.colors = [UIColor(hex: "#23A251").cgColor, UIColor(hex: "#7CE757").cgColor]
+		gradient.colors = theme?.gradientColors
 		gradient.locations = [0.0, 1.0]
 		gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
 		gradient.endPoint = CGPoint(x: 1.0, y: 1.0)

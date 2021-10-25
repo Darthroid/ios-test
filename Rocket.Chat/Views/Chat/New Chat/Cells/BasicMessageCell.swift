@@ -22,15 +22,8 @@ final class BasicMessageCell: BaseMessageCell, SizingCell {
         return cell
     }()
 
-    @IBOutlet weak var avatarContainerView: UIView! {
-        didSet {
-            avatarContainerView.layer.cornerRadius = 4
-            avatarView.frame = avatarContainerView.bounds
-            avatarContainerView.addSubview(avatarView)
-        }
-    }
+	@IBOutlet weak var stackView: UIStackView!
 
-    @IBOutlet weak var username: UILabel!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var statusView: UIImageView!
     @IBOutlet weak var text: RCTextView!
@@ -41,18 +34,12 @@ final class BasicMessageCell: BaseMessageCell, SizingCell {
     @IBOutlet weak var textLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var textTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var readReceiptWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var readReceiptTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var avatarWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var avatarLeadingConstraint: NSLayoutConstraint!
+
     var textWidth: CGFloat {
         return
             messageWidth -
             textLeadingConstraint.constant -
             textTrailingConstraint.constant -
-            readReceiptWidthConstraint.constant -
-            readReceiptTrailingConstraint.constant -
-            avatarWidthConstraint.constant -
-            avatarLeadingConstraint.constant -
             layoutMargins.left -
             layoutMargins.right
     }
@@ -69,15 +56,14 @@ final class BasicMessageCell: BaseMessageCell, SizingCell {
         super.awakeFromNib()
 
         initialTextHeightConstant = textHeightConstraint.constant
-        insertGesturesIfNeeded(with: username)
     }
 
     override func configure(completeRendering: Bool) {
         configure(
             with: avatarView,
             date: date,
-            status: statusView,
-            and: username,
+			status: statusView,
+			and: nil,
             completeRendering: completeRendering
         )
 
@@ -116,7 +102,6 @@ final class BasicMessageCell: BaseMessageCell, SizingCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        username.text = ""
         date.text = ""
 		text.isSender = nil
         text.message = nil
@@ -134,7 +119,6 @@ extension BasicMessageCell {
 
         let theme = self.theme ?? .light
         date.textColor = theme.auxiliaryText
-        username.textColor = theme.titleText
         updateText()
     }
 

@@ -36,6 +36,7 @@ class Theme: NSObject {
     @objc let actionBackgroundColor: UIColor
     @objc let mutedAccent: UIColor
     @objc let strongAccent: UIColor
+	@objc let gradientColors: [CGColor]
     let appearence: Appearence
 
     struct Appearence: Equatable {
@@ -78,6 +79,7 @@ class Theme: NSObject {
          actionBackgroundColor: UIColor,
          mutedAccent: UIColor,
          strongAccent: UIColor?,
+		 gradientColors: [CGColor],
          appearence: Appearence) {
 
         self.backgroundColor = backgroundColor
@@ -104,7 +106,7 @@ class Theme: NSObject {
         } else {
             self.strongAccent = #colorLiteral(red: 0.9720572829, green: 0.3783821166, blue: 0.446572125, alpha: 1)
         }
-
+		self.gradientColors = gradientColors
         self.appearence = appearence
     }
 
@@ -128,6 +130,7 @@ class Theme: NSObject {
         actionBackgroundColor: #colorLiteral(red: 0.9098039216, green: 0.9490196078, blue: 1, alpha: 1),
         mutedAccent: #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.8, alpha: 1),
         strongAccent: nil,
+		gradientColors: [UIColor(hex: "#23A251").cgColor, UIColor(hex: "#7CE757").cgColor],
         appearence: .light
     )
 
@@ -151,6 +154,7 @@ class Theme: NSObject {
         actionBackgroundColor: #colorLiteral(red: 0.9098039216, green: 0.9490196078, blue: 1, alpha: 1),
         mutedAccent: #colorLiteral(red: 0.1672673633, green: 0.1672673633, blue: 0.1769603646, alpha: 1),
         strongAccent: nil,
+		gradientColors: [UIColor(hex: "#23A251").cgColor, UIColor(hex: "#7CE757").cgColor],
         appearence: .dark
     )
 
@@ -174,6 +178,7 @@ class Theme: NSObject {
         actionBackgroundColor: #colorLiteral(red: 0.9098039216, green: 0.9490196078, blue: 1, alpha: 1),
         mutedAccent: #colorLiteral(red: 0.156862745, green: 0.156862745, blue: 0.16, alpha: 1),
         strongAccent: nil,
+		gradientColors: [UIColor(hex: "#23A251").cgColor, UIColor(hex: "#7CE757").cgColor],
         appearence: .dark
     )
 }

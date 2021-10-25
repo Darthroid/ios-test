@@ -30,7 +30,8 @@ final class SubscriptionsSortingHeaderView: UIView {
             actionTintColor: theme.actionTintColor,
             actionBackgroundColor: theme.actionBackgroundColor,
             mutedAccent: theme.mutedAccent,
-            strongAccent: theme.strongAccent,
+			strongAccent: theme.strongAccent,
+			gradientColors: theme.gradientColors,
             appearence: theme.appearence
         )
     }
