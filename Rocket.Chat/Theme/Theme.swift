@@ -24,6 +24,8 @@ class Theme: NSObject {
     @objc let bannerBackground: UIColor
     @objc let titleText: UIColor
     @objc let bodyText: UIColor
+	@objc let senderText: UIColor
+	@objc let receiverText: UIColor
     @objc let borderColor: UIColor
     @objc let controlText: UIColor
     @objc let auxiliaryText: UIColor
@@ -64,6 +66,8 @@ class Theme: NSObject {
          bannerBackground: UIColor,
          titleText: UIColor,
          bodyText: UIColor,
+		 senderText: UIColor,
+		 receiverText: UIColor,
          borderColor: UIColor,
          controlText: UIColor,
          auxiliaryText: UIColor,
@@ -83,6 +87,8 @@ class Theme: NSObject {
         self.bannerBackground = bannerBackground
         self.titleText = titleText
         self.bodyText = bodyText
+		self.senderText = senderText
+		self.receiverText = receiverText
         self.borderColor = borderColor
         self.controlText = controlText
         self.auxiliaryText = auxiliaryText
@@ -110,6 +116,8 @@ class Theme: NSObject {
         bannerBackground: #colorLiteral(red: 0.9450980392, green: 0.9490196078, blue: 0.9568627451, alpha: 1),
         titleText: #colorLiteral(red: 0.05143930763, green: 0.0585193634, blue: 0.07106169313, alpha: 1),
         bodyText: #colorLiteral(red: 0.1843137255, green: 0.2039215686, blue: 0.2392156863, alpha: 1),
+		senderText: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
+		receiverText: #colorLiteral(red: 0.140625, green: 0.2109475, blue: 0.2890625, alpha: 1),
         borderColor: #colorLiteral(red: 0.8823529412, green: 0.8980392157, blue: 0.9098039216, alpha: 1),
         controlText: #colorLiteral(red: 0.3294117647, green: 0.3450980392, blue: 0.368627451, alpha: 1),
         auxiliaryText: #colorLiteral(red: 0.695, green: 0.725, blue: 0.704, alpha: 1),
@@ -131,6 +139,8 @@ class Theme: NSObject {
         bannerBackground: #colorLiteral(red: 0.05490196078, green: 0.1215686275, blue: 0.2196078431, alpha: 1),
         titleText: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
         bodyText: #colorLiteral(red: 0.9111283446, green: 0.9229556015, blue: 0.9294117647, alpha: 1),
+		senderText: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
+		receiverText: #colorLiteral(red: 0.140625, green: 0.2109475, blue: 0.2890625, alpha: 1),
         borderColor: #colorLiteral(red: 0.05882352941, green: 0.1294117647, blue: 0.2392156863, alpha: 1),
         controlText: #colorLiteral(red: 0.8549193462, green: 0.8697612629, blue: 0.903159703, alpha: 1),
         auxiliaryText: #colorLiteral(red: 0.695, green: 0.725, blue: 0.704, alpha: 1),
@@ -152,6 +162,8 @@ class Theme: NSObject {
         bannerBackground: #colorLiteral(red: 0.1215686275, green: 0.137254902, blue: 0.1607843137, alpha: 1),
         titleText: #colorLiteral(red: 0.9785086513, green: 0.9786720872, blue: 0.9784870744, alpha: 1),
         bodyText: #colorLiteral(red: 0.9111283446, green: 0.9229556015, blue: 0.9294117647, alpha: 1),
+		senderText: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
+		receiverText: #colorLiteral(red: 0.140625, green: 0.2109475, blue: 0.2890625, alpha: 1),
         borderColor: #colorLiteral(red: 0.1215686275, green: 0.137254902, blue: 0.1607843137, alpha: 1),
         controlText: #colorLiteral(red: 0.8549193462, green: 0.8697612629, blue: 0.903159703, alpha: 1),
         auxiliaryText: #colorLiteral(red: 0.695, green: 0.725, blue: 0.704, alpha: 1),

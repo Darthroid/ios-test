@@ -76,6 +76,7 @@ final class SequentialMessageCell: BaseMessageCell, SizingCell {
             }
 
             text.message = messageText
+			text.isSender = message.userIdentifier == AuthManager.currentUser()?.identifier
 
             let maxSize = CGSize(
                 width: textWidth,
@@ -91,6 +92,7 @@ final class SequentialMessageCell: BaseMessageCell, SizingCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         text.message = nil
+		text.isSender = nil
         textHeightConstraint.constant = initialTextHeightConstant
     }
 }

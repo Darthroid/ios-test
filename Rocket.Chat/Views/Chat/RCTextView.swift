@@ -62,6 +62,10 @@ class HighlightLayoutManager: NSLayoutManager {
 
     weak var delegate: ChatMessageCellProtocol?
 
+	var isSender: Bool!
+
+	private var gradientLayer: CAGradientLayer?
+
     var message: NSAttributedString! {
         didSet {
             textView.attributedText = message
@@ -129,9 +133,13 @@ class HighlightLayoutManager: NSLayoutManager {
     private func configureTextView() {
         textView.isScrollEnabled = false
         textView.adjustsFontForContentSizeCategory = true
-        textView.textContainerInset = .zero
+        textView.textContainerInset = .init(top: 17, left: 20, bottom: 17, right: 20)
         textView.textContainer.lineFragmentPadding = 0
-        textView.backgroundColor = .clear
+		textView.font = UIFont(name: "Montserrat-SemiBold", size: 12)
+		textView.textAlignment = .center
+		textView.layer.cornerRadius = 16
+		textView.layer.masksToBounds = true
+		textView.clipsToBounds = true
         textView.dataDetectorTypes = .all
         textView.isEditable = false
         textView.delegate = self
@@ -139,10 +147,31 @@ class HighlightLayoutManager: NSLayoutManager {
         textView.accessibilityTraits = .staticText
     }
 
+	private func setGradientLayer() {
+		guard isSender == true else {
+			gradientLayer?.removeFromSuperlayer()
+			return
+		}
+		let gradient: CAGradientLayer = CAGradientLayer()
+
+		gradient.colors = [UIColor(hex: "#23A251").cgColor, UIColor(hex: "#7CE757").cgColor]
+		gradient.locations = [0.0, 1.0]
+		gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
+		gradient.endPoint = CGPoint(x: 1.0, y: 1.0)
+		gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.bounds.size.width, height: self.bounds.size.height)
+		gradient.cornerRadius = 16
+		gradient.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMinXMaxYCorner]
+
+		self.gradientLayer?.removeFromSuperlayer()
+		self.layer.insertSublayer(gradient, at: 0)
+		self.gradientLayer = gradient
+	}
+
     override func layoutSubviews() {
         super.layoutSubviews()
 
         textView.frame = bounds
+		setGradientLayer()
     }
 
     override func prepareForInterfaceBuilder() {
@@ -195,5 +224,13 @@ extension RCTextView {
         super.applyTheme()
         guard let theme = theme else { return }
         customEmojiViews.forEach { $0.backgroundColor = theme.backgroundColor }
+		if isSender {
+			textView.backgroundColor = .clear
+			self.setGradientLayer()
+		} else {
+			gradientLayer?.removeFromSuperlayer()
+			textView.backgroundColor = UIColor(hex: "#F1F4F3")
+			textView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]
+		}
     }
 }

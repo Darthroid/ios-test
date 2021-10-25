@@ -48,7 +48,8 @@ final class MessageTextCacheManager {
             text.setFontColor(MessageTextFontAttributes.systemFontColor(for: theme))
         } else {
             text.setFont(MessageTextFontAttributes.defaultFont)
-            text.setFontColor(MessageTextFontAttributes.defaultFontColor(for: theme))
+//            text.setFontColor(MessageTextFontAttributes.defaultFontColor(for: theme))
+			text.setFontColor(MessageTextFontAttributes.messageTextColor(for: theme, isSender: message.userIdentifier == AuthManager.currentUser()?.identifier))
             text.setLineSpacing(MessageTextFontAttributes.defaultFont)
         }
 

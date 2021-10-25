@@ -10,6 +10,18 @@ import UIKit
 
 struct MessageTextFontAttributes {
 
+	static func senderFontColor(for theme: Theme? = nil) -> UIColor {
+		return theme?.senderText ?? ThemeManager.theme.senderText
+	}
+
+	static func receiverFontColor(for theme: Theme? = nil) -> UIColor {
+		return theme?.receiverText ?? ThemeManager.theme.receiverText
+	}
+
+	static func messageTextColor(for theme: Theme? = nil, isSender: Bool) -> UIColor {
+		return isSender ? (theme?.senderText ?? ThemeManager.theme.senderText) : (theme?.receiverText ?? ThemeManager.theme.receiverText)
+	}
+	
     static func defaultFontColor(for theme: Theme? = nil) -> UIColor {
         return theme?.bodyText ?? ThemeManager.theme.bodyText
     }
@@ -23,8 +35,7 @@ struct MessageTextFontAttributes {
     }
 
     static var defaultFont: UIFont {
-        let defaultFontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: .body)
-        return UIFont(descriptor: defaultFontDescriptor, size: 0)
+		return UIFont(name: "Montserrat-SemiBold", size: 12) ?? .systemFont(ofSize: 12, weight: .semibold)
     }
 
     static var italicFont: UIFont {

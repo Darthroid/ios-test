@@ -19,6 +19,8 @@ final class SubscriptionsSortingHeaderView: UIView {
             bannerBackground: theme.bannerBackground,
             titleText: theme.titleText,
             bodyText: theme.bodyText,
+			senderText: theme.senderText,
+			receiverText: theme.receiverText,
             borderColor: theme.borderColor,
             controlText: theme.controlText,
             auxiliaryText: theme.auxiliaryText,

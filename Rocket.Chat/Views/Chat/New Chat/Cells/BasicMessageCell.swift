@@ -101,6 +101,7 @@ final class BasicMessageCell: BaseMessageCell, SizingCell {
             }
 
             text.message = messageText
+			text.isSender = message.userIdentifier == AuthManager.currentUser()?.identifier
 
             let maxSize = CGSize(
                 width: textWidth,
@@ -117,6 +118,7 @@ final class BasicMessageCell: BaseMessageCell, SizingCell {
         super.prepareForReuse()
         username.text = ""
         date.text = ""
+		text.isSender = nil
         text.message = nil
         avatarView.prepareForReuse()
         textHeightConstraint.constant = initialTextHeightConstant

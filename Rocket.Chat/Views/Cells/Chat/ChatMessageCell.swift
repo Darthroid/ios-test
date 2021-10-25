@@ -151,6 +151,7 @@ final class ChatMessageCell: UICollectionViewCell {
         super.prepareForReuse()
         labelUsername.text = ""
         labelText.message = nil
+		labelText.isSender = nil
         labelDate.text = ""
 
         sequential = false
@@ -274,6 +275,7 @@ final class ChatMessageCell: UICollectionViewCell {
             }
 
             labelText.message = text
+			labelText.isSender = unmanagedMessage.userIdentifier == AuthManager.currentUser()?.identifier
         }
     }
 
