@@ -20,6 +20,7 @@ class BaseMessageCell: UICollectionViewCell, BaseMessageCellProtocol, ChatCell {
     weak var usernameTapGesture: UITapGestureRecognizer?
     weak var avatarTapGesture: UITapGestureRecognizer?
 
+	weak var usernameLabel: UILabel?
     lazy var avatarView: AvatarView = {
         let avatarView = AvatarView()
 
@@ -49,7 +50,10 @@ class BaseMessageCell: UICollectionViewCell, BaseMessageCellProtocol, ChatCell {
             return
         }
 
+		usernameLabel = username
+
         date?.text = viewModel.dateFormatted
+		username?.text = viewModel.message?.alias ?? user.displayName
 
         if viewModel.message?.failed == true {
             status?.isHidden = false
@@ -101,6 +105,22 @@ class BaseMessageCell: UICollectionViewCell, BaseMessageCellProtocol, ChatCell {
 
             longPressGesture = gesture
         }
+
+		if usernameTapGesture == nil && username != nil {
+			let gesture = UITapGestureRecognizer(target: self, action: #selector(handleUsernameTapGestureCell(recognizer:)))
+			gesture.delegate = self
+			username?.addGestureRecognizer(gesture)
+
+			usernameTapGesture = gesture
+		}
+
+		if avatarTapGesture == nil {
+			let gesture = UITapGestureRecognizer(target: self, action: #selector(handleUsernameTapGestureCell(recognizer:)))
+			gesture.delegate = self
+			avatarView.addGestureRecognizer(gesture)
+
+			avatarTapGesture = gesture
+		}
     }
 
     @objc func handleLongPressMessageCell(recognizer: UIGestureRecognizer) {
@@ -113,6 +133,18 @@ class BaseMessageCell: UICollectionViewCell, BaseMessageCellProtocol, ChatCell {
 
         delegate?.handleLongPressMessageCell(managedObject, view: contentView, recognizer: recognizer)
     }
+
+	@objc func handleUsernameTapGestureCell(recognizer: UIGestureRecognizer) {
+		guard
+			let viewModel = viewModel?.base as? BaseMessageChatItem,
+			let managedObject = viewModel.message?.managedObject?.validated(),
+			let username = usernameLabel
+		else {
+			return
+		}
+
+		delegate?.handleUsernameTapMessageCell(managedObject, view: username, recognizer: recognizer)
+	}
 }
 
 // MARK: UIGestureRecognizerDelegate
