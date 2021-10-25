@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,14 +18,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQf-8m-OUh" customClass="RCTextView" customModule="Rocket_Chat" customModuleProvider="target">
-                        <rect key="frame" x="71" y="0.0" width="266" height="20"/>
+                        <rect key="frame" x="20" y="0.0" width="313" height="20"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="Za6-ue-cn4"/>
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prl-FX-Ikw">
-                        <rect key="frame" x="339" y="0.0" width="20" height="20"/>
+                        <rect key="frame" x="335" y="0.0" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="pBg-j1-r96"/>
                             <constraint firstAttribute="width" constant="20" id="ziC-M7-ddE"/>
@@ -36,16 +34,16 @@
                     </button>
                 </subviews>
             </view>
+            <viewLayoutGuide key="safeArea" id="37C-iT-i78"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="prl-FX-Ikw" firstAttribute="leading" secondItem="aQf-8m-OUh" secondAttribute="trailing" constant="2" id="AxZ-c0-jaD"/>
                 <constraint firstItem="aQf-8m-OUh" firstAttribute="top" secondItem="cJP-dJ-Ai1" secondAttribute="top" id="aws-mh-01l"/>
-                <constraint firstAttribute="trailingMargin" secondItem="prl-FX-Ikw" secondAttribute="trailing" id="hE6-dW-aUu"/>
+                <constraint firstAttribute="trailing" secondItem="prl-FX-Ikw" secondAttribute="trailing" constant="20" id="hE6-dW-aUu"/>
                 <constraint firstAttribute="bottom" secondItem="aQf-8m-OUh" secondAttribute="bottom" constant="5" id="miu-Yc-hLX"/>
-                <constraint firstItem="aQf-8m-OUh" firstAttribute="leading" secondItem="cJP-dJ-Ai1" secondAttribute="leadingMargin" constant="55" id="t8I-lW-R1z"/>
+                <constraint firstItem="aQf-8m-OUh" firstAttribute="leading" secondItem="cJP-dJ-Ai1" secondAttribute="leading" constant="20" id="t8I-lW-R1z"/>
                 <constraint firstItem="prl-FX-Ikw" firstAttribute="bottom" secondItem="aQf-8m-OUh" secondAttribute="bottom" id="ygh-6T-eMv"/>
             </constraints>
-            <viewLayoutGuide key="safeArea" id="37C-iT-i78"/>
             <size key="customSize" width="375" height="43"/>
             <connections>
                 <outlet property="readReceiptButton" destination="prl-FX-Ikw" id="3RS-Fa-44z"/>
