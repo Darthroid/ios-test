@@ -83,6 +83,7 @@ extension UIView: ThemeProvider {
             bodyText: theme.bodyText,
 			senderText: theme.senderText,
 			receiverText: theme.receiverText,
+			receivedMessageBackground: theme.receivedMessageBackground,
             borderColor: theme.borderColor,
             controlText: theme.controlText,
             auxiliaryText: theme.auxiliaryText,

@@ -26,6 +26,7 @@ class Theme: NSObject {
     @objc let bodyText: UIColor
 	@objc let senderText: UIColor
 	@objc let receiverText: UIColor
+	@objc let receivedMessageBackground: UIColor
     @objc let borderColor: UIColor
     @objc let controlText: UIColor
     @objc let auxiliaryText: UIColor
@@ -69,6 +70,7 @@ class Theme: NSObject {
          bodyText: UIColor,
 		 senderText: UIColor,
 		 receiverText: UIColor,
+		 receivedMessageBackground: UIColor,
          borderColor: UIColor,
          controlText: UIColor,
          auxiliaryText: UIColor,
@@ -91,6 +93,7 @@ class Theme: NSObject {
         self.bodyText = bodyText
 		self.senderText = senderText
 		self.receiverText = receiverText
+		self.receivedMessageBackground = receivedMessageBackground
         self.borderColor = borderColor
         self.controlText = controlText
         self.auxiliaryText = auxiliaryText
@@ -120,6 +123,7 @@ class Theme: NSObject {
         bodyText: #colorLiteral(red: 0.1843137255, green: 0.2039215686, blue: 0.2392156863, alpha: 1),
 		senderText: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
 		receiverText: #colorLiteral(red: 0.140625, green: 0.2109475, blue: 0.2890625, alpha: 1),
+		receivedMessageBackground: #colorLiteral(red: 0.95, green: 0.96, blue: 0.95, alpha: 1.00),
         borderColor: #colorLiteral(red: 0.8823529412, green: 0.8980392157, blue: 0.9098039216, alpha: 1),
         controlText: #colorLiteral(red: 0.3294117647, green: 0.3450980392, blue: 0.368627451, alpha: 1),
         auxiliaryText: #colorLiteral(red: 0.695, green: 0.725, blue: 0.704, alpha: 1),
@@ -130,7 +134,7 @@ class Theme: NSObject {
         actionBackgroundColor: #colorLiteral(red: 0.9098039216, green: 0.9490196078, blue: 1, alpha: 1),
         mutedAccent: #colorLiteral(red: 0.7960784314, green: 0.7960784314, blue: 0.8, alpha: 1),
         strongAccent: nil,
-		gradientColors: [UIColor(hex: "#23A251").cgColor, UIColor(hex: "#7CE757").cgColor],
+		gradientColors: [#colorLiteral(red: 0.14, green: 0.64, blue: 0.32, alpha: 1.00).cgColor, #colorLiteral(red: 0.49, green: 0.91, blue: 0.34, alpha: 1.00).cgColor],
         appearence: .light
     )
 
@@ -144,6 +148,7 @@ class Theme: NSObject {
         bodyText: #colorLiteral(red: 0.9111283446, green: 0.9229556015, blue: 0.9294117647, alpha: 1),
 		senderText: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
 		receiverText: #colorLiteral(red: 0.140625, green: 0.2109475, blue: 0.2890625, alpha: 1),
+		receivedMessageBackground: #colorLiteral(red: 0.95, green: 0.96, blue: 0.95, alpha: 1.00),
         borderColor: #colorLiteral(red: 0.05882352941, green: 0.1294117647, blue: 0.2392156863, alpha: 1),
         controlText: #colorLiteral(red: 0.8549193462, green: 0.8697612629, blue: 0.903159703, alpha: 1),
         auxiliaryText: #colorLiteral(red: 0.695, green: 0.725, blue: 0.704, alpha: 1),
@@ -154,7 +159,7 @@ class Theme: NSObject {
         actionBackgroundColor: #colorLiteral(red: 0.9098039216, green: 0.9490196078, blue: 1, alpha: 1),
         mutedAccent: #colorLiteral(red: 0.1672673633, green: 0.1672673633, blue: 0.1769603646, alpha: 1),
         strongAccent: nil,
-		gradientColors: [UIColor(hex: "#23A251").cgColor, UIColor(hex: "#7CE757").cgColor],
+		gradientColors: [#colorLiteral(red: 0.14, green: 0.64, blue: 0.32, alpha: 1.00).cgColor, #colorLiteral(red: 0.49, green: 0.91, blue: 0.34, alpha: 1.00).cgColor],
         appearence: .dark
     )
 
@@ -168,6 +173,7 @@ class Theme: NSObject {
         bodyText: #colorLiteral(red: 0.9111283446, green: 0.9229556015, blue: 0.9294117647, alpha: 1),
 		senderText: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1),
 		receiverText: #colorLiteral(red: 0.140625, green: 0.2109475, blue: 0.2890625, alpha: 1),
+		receivedMessageBackground: #colorLiteral(red: 0.95, green: 0.96, blue: 0.95, alpha: 1.00),
         borderColor: #colorLiteral(red: 0.1215686275, green: 0.137254902, blue: 0.1607843137, alpha: 1),
         controlText: #colorLiteral(red: 0.8549193462, green: 0.8697612629, blue: 0.903159703, alpha: 1),
         auxiliaryText: #colorLiteral(red: 0.695, green: 0.725, blue: 0.704, alpha: 1),
@@ -178,7 +184,7 @@ class Theme: NSObject {
         actionBackgroundColor: #colorLiteral(red: 0.9098039216, green: 0.9490196078, blue: 1, alpha: 1),
         mutedAccent: #colorLiteral(red: 0.156862745, green: 0.156862745, blue: 0.16, alpha: 1),
         strongAccent: nil,
-		gradientColors: [UIColor(hex: "#23A251").cgColor, UIColor(hex: "#7CE757").cgColor],
+		gradientColors: [#colorLiteral(red: 0.14, green: 0.64, blue: 0.32, alpha: 1.00).cgColor, #colorLiteral(red: 0.49, green: 0.91, blue: 0.34, alpha: 1.00).cgColor],
         appearence: .dark
     )
 }
