@@ -89,6 +89,20 @@ final class MessagesViewController: RocketChatViewController, MessagesListProtoc
         }
     }
 
+	var avatarView: AvatarView = {
+		let avatarView = AvatarView()
+
+		avatarView.isUserInteractionEnabled = false
+		avatarView.translatesAutoresizingMaskIntoConstraints = false
+		avatarView.layer.cornerRadius = 12
+		avatarView.layer.masksToBounds = true
+
+		avatarView.widthAnchor.constraint(equalToConstant: 32).isActive = true
+		avatarView.heightAnchor.constraint(equalToConstant: 32).isActive = true
+
+		return avatarView
+	}()
+
     var threadIdentifier: String? {
         didSet {
             guard let threadIdentifier = threadIdentifier else { return }
@@ -207,6 +221,11 @@ final class MessagesViewController: RocketChatViewController, MessagesListProtoc
         startDraftMessage()
         updateJoinedView()
     }
+
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		setupNavBar()
+	}
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -533,24 +552,22 @@ final class MessagesViewController: RocketChatViewController, MessagesListProtoc
     // MARK: Navigation Buttons
 
     private func updateNavigationBarButtons() {
+		var user: User?
+
         if subscription != nil {
-            let search = UIBarButtonItem(
-                image: UIImage(named: "Search"),
-                style: .done,
-                target: self,
-                action: #selector(showSearchMessages)
-            )
-            search.accessibilityLabel = VOLocalizedString("message.search.label")
+			if subscription.type == .directMessage {
+				user = subscription.directMessageUser
+			}
 
-            let threads = UIBarButtonItem(
-                image: UIImage(named: "Threads"),
-                style: .done,
-                target: self,
-                action: #selector(buttonThreadsDidPressed)
-            )
-            threads.accessibilityLabel = VOLocalizedString("message.threads.label")
+			if let username = user?.username {
+				avatarView.avatarURL = User.avatarURL(forUsername: username)
+			} else {
+				avatarView.avatarURL = Subscription.avatarURL(for: subscription.name)
+			}
 
-            navigationItem.rightBarButtonItems = [search, threads]
+			navigationItem.rightBarButtonItems = [
+				UIBarButtonItem(customView: avatarView)
+			]
         } else {
             navigationItem.rightBarButtonItem = nil
         }
@@ -562,6 +579,12 @@ final class MessagesViewController: RocketChatViewController, MessagesListProtoc
             action: nil
         )
     }
+
+	private func setupNavBar() {
+		self.navigationController?.navigationBar.barTintColor = .white
+		self.navigationController?.navigationBar.tintColor = UIColor(red: 0.695, green: 0.725, blue: 0.704, alpha: 1)
+		self.navigationController?.navigationBar.isTranslucent = false
+	}
 
     // MARK: IBAction
 

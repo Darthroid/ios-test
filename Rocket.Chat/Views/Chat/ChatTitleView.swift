@@ -16,17 +16,7 @@ final class ChatTitleView: UIView {
 
     weak var delegate: ChatTitleViewProtocol?
 
-    @IBOutlet weak var viewStatus: UIView! {
-        didSet {
-            viewStatus.backgroundColor = .clear
-            viewStatus.layer.cornerRadius = 4.5
-        }
-    }
-
-    @IBOutlet weak var titleScrollView: UIScrollView!
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var titleImage: UIImageView!
-    @IBOutlet weak var showInfoImage: UIImageView!
     @IBOutlet weak var typingLabel: UILabel! {
         didSet {
             typingLabel.text = ""
@@ -39,11 +29,7 @@ final class ChatTitleView: UIView {
         }
 
         set {
-            viewStatus.isHidden = newValue
-            titleScrollView.isHidden = newValue
             titleLabel.isHidden = newValue
-            titleImage.isHidden = newValue
-            showInfoImage.isHidden = newValue
         }
     }
 
@@ -92,14 +78,9 @@ final class ChatTitleView: UIView {
         titleLabel.accessibilityHint = VOLocalizedString("message.chat.title.hint")
 
         if let subscription = viewModel.subscription, subscription.type == .directMessage {
-            titleImage.isHidden = true
-            viewStatus.backgroundColor = viewModel.iconColor
-            viewStatus.isHidden = false
+			typingLabel.text = viewModel.user?.status.description
         } else {
-            titleImage.isHidden = false
-            let image = UIImage(named: viewModel.imageName)?.imageWithTint(viewModel.iconColor)
-            titleImage.image = image
-            viewStatus.isHidden = true
+
         }
     }
 
