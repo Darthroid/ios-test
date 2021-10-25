@@ -317,8 +317,8 @@ extension SubscriptionsViewController: UISearchBarDelegate {
 	func updateFiltersState() {
 		let semiBoldFont = UIFont(name: "Montserrat-SemiBold", size: 14)
 		let mediumFont = UIFont(name: "Montserrat-Medium", size: 14)
-		let selectedColor = UIColor(hex: "#24364A")
-		let unselectedColor = UIColor(hex: "#B1B9B4")
+		let selectedColor = ThemeManager.theme.receiverText
+		let unselectedColor = ThemeManager.theme.auxiliaryText
 
 		[(filterAllButton, viewModel.filterType == .all),
 		 (filterChatsButton, viewModel.filterType == .chats),

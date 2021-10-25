@@ -229,7 +229,7 @@ extension RCTextView {
 			self.setGradientLayer()
 		} else {
 			gradientLayer?.removeFromSuperlayer()
-			textView.backgroundColor = UIColor(hex: "#F1F4F3")
+			textView.backgroundColor = theme.receivedMessageBackground
 			textView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner, .layerMaxXMaxYCorner]
 		}
     }
