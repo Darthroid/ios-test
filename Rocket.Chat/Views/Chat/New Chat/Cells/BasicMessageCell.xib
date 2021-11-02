@@ -23,19 +23,24 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="boF-AZ-K6i">
-                        <rect key="frame" x="54" y="13" width="335" height="44"/>
+                        <rect key="frame" x="20" y="8" width="335" height="44"/>
                         <subviews>
-                            <view contentMode="scaleToFill" verticalHuggingPriority="252" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cr2-8p-eRS" customClass="RCTextView" customModule="Rocket_Chat" customModuleProvider="target">
+                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="Z54-mM-hft">
                                 <rect key="frame" x="0.0" y="0.0" width="335" height="20"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="zQ8-gG-X3N"/>
-                                </constraints>
-                            </view>
-                            <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Jut-dd-6Vw">
+                                <subviews>
+                                    <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="252" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cr2-8p-eRS" customClass="RCTextView" customModule="Rocket_Chat" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="335" height="20"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="zQ8-gG-X3N"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" horizontalCompressionResistancePriority="250" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="Jut-dd-6Vw">
                                 <rect key="frame" x="0.0" y="24" width="335" height="20"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" lineBreakMode="tailTruncation" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3FX-dW-pKk">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" textAlignment="right" lineBreakMode="tailTruncation" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3FX-dW-pKk">
                                         <rect key="frame" x="0.0" y="2.5" width="287" height="15"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="12"/>
                                         <color key="textColor" red="0.69411764705882351" green="0.72549019607843135" blue="0.70588235294117641" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -67,8 +72,10 @@
             <constraints>
                 <constraint firstItem="boF-AZ-K6i" firstAttribute="top" secondItem="tSh-T8-5Jy" secondAttribute="top" constant="8" id="3r3-FT-fDa"/>
                 <constraint firstAttribute="bottom" secondItem="boF-AZ-K6i" secondAttribute="bottom" constant="8" id="6XK-8i-snw"/>
-                <constraint firstAttribute="trailing" secondItem="boF-AZ-K6i" secondAttribute="trailing" constant="20" id="our-Ce-9zv"/>
-                <constraint firstItem="boF-AZ-K6i" firstAttribute="leading" secondItem="tSh-T8-5Jy" secondAttribute="leading" constant="20" id="wdp-Ik-I2b"/>
+                <constraint firstAttribute="trailing" secondItem="boF-AZ-K6i" secondAttribute="trailing" constant="20" id="jgh-Fg-sz2"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="boF-AZ-K6i" secondAttribute="trailing" constant="20" id="our-Ce-9zv"/>
+                <constraint firstItem="boF-AZ-K6i" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="tSh-T8-5Jy" secondAttribute="leading" constant="20" id="wdp-Ik-I2b"/>
+                <constraint firstItem="boF-AZ-K6i" firstAttribute="leading" secondItem="tSh-T8-5Jy" secondAttribute="leading" constant="20" id="xvk-xu-k3j"/>
             </constraints>
             <size key="customSize" width="375" height="40"/>
             <connections>
@@ -79,8 +86,10 @@
                 <outlet property="statusView" destination="yII-Mp-ySs" id="Bdt-54-0Ig"/>
                 <outlet property="text" destination="Cr2-8p-eRS" id="YOI-ga-hdD"/>
                 <outlet property="textHeightConstraint" destination="zQ8-gG-X3N" id="4R5-ks-5mm"/>
-                <outlet property="textLeadingConstraint" destination="wdp-Ik-I2b" id="4Fm-m4-u1Q"/>
-                <outlet property="textTrailingConstraint" destination="our-Ce-9zv" id="N69-Jw-C1l"/>
+                <outlet property="textLeadingConstraintEqual" destination="xvk-xu-k3j" id="AXl-eN-SKd"/>
+                <outlet property="textLeadingConstraintGreatThenOrEqual" destination="wdp-Ik-I2b" id="CSS-kr-CSs"/>
+                <outlet property="textTrailingConstraintEqual" destination="jgh-Fg-sz2" id="EFR-pV-4Ku"/>
+                <outlet property="textTrailingConstraintGreatThenOrEqual" destination="our-Ce-9zv" id="cHB-24-4Z5"/>
             </connections>
             <point key="canvasLocation" x="509.60000000000002" y="-293.25337331334333"/>
         </collectionViewCell>

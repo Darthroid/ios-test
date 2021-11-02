@@ -17,42 +17,48 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="25"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQf-8m-OUh" customClass="RCTextView" customModule="Rocket_Chat" customModuleProvider="target">
-                        <rect key="frame" x="20" y="0.0" width="313" height="20"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="Za6-ue-cn4"/>
-                        </constraints>
-                    </view>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prl-FX-Ikw">
-                        <rect key="frame" x="335" y="0.0" width="20" height="20"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="pBg-j1-r96"/>
-                            <constraint firstAttribute="width" constant="20" id="ziC-M7-ddE"/>
-                        </constraints>
-                        <state key="normal" image="Unread"/>
-                    </button>
+                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="bottom" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="TjW-2G-ANp">
+                        <rect key="frame" x="20" y="0.0" width="335" height="20"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aQf-8m-OUh" customClass="RCTextView" customModule="Rocket_Chat" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="313" height="20"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="Za6-ue-cn4"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="prl-FX-Ikw">
+                                <rect key="frame" x="315" y="0.0" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="pBg-j1-r96"/>
+                                    <constraint firstAttribute="width" constant="20" id="ziC-M7-ddE"/>
+                                </constraints>
+                                <state key="normal" image="Unread"/>
+                            </button>
+                        </subviews>
+                    </stackView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="37C-iT-i78"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="prl-FX-Ikw" firstAttribute="leading" secondItem="aQf-8m-OUh" secondAttribute="trailing" constant="2" id="AxZ-c0-jaD"/>
-                <constraint firstItem="aQf-8m-OUh" firstAttribute="top" secondItem="cJP-dJ-Ai1" secondAttribute="top" id="aws-mh-01l"/>
-                <constraint firstAttribute="trailing" secondItem="prl-FX-Ikw" secondAttribute="trailing" constant="20" id="hE6-dW-aUu"/>
-                <constraint firstAttribute="bottom" secondItem="aQf-8m-OUh" secondAttribute="bottom" constant="5" id="miu-Yc-hLX"/>
-                <constraint firstItem="aQf-8m-OUh" firstAttribute="leading" secondItem="cJP-dJ-Ai1" secondAttribute="leading" constant="20" id="t8I-lW-R1z"/>
-                <constraint firstItem="prl-FX-Ikw" firstAttribute="bottom" secondItem="aQf-8m-OUh" secondAttribute="bottom" id="ygh-6T-eMv"/>
+                <constraint firstItem="TjW-2G-ANp" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="cJP-dJ-Ai1" secondAttribute="leading" constant="20" id="5Uq-6h-qwa"/>
+                <constraint firstAttribute="bottom" secondItem="TjW-2G-ANp" secondAttribute="bottom" constant="5" id="AKt-Pn-2z1"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="TjW-2G-ANp" secondAttribute="trailing" constant="20" id="GXc-SU-e3G"/>
+                <constraint firstItem="TjW-2G-ANp" firstAttribute="leading" secondItem="cJP-dJ-Ai1" secondAttribute="leading" constant="20" id="s7q-4Z-wGl"/>
+                <constraint firstItem="TjW-2G-ANp" firstAttribute="top" secondItem="cJP-dJ-Ai1" secondAttribute="top" id="sey-l6-N6w"/>
+                <constraint firstAttribute="trailing" secondItem="TjW-2G-ANp" secondAttribute="trailing" constant="20" id="uDH-IK-qGE"/>
             </constraints>
             <size key="customSize" width="375" height="43"/>
             <connections>
                 <outlet property="readReceiptButton" destination="prl-FX-Ikw" id="3RS-Fa-44z"/>
-                <outlet property="readReceiptTrailingConstraint" destination="hE6-dW-aUu" id="VQ9-Qn-fR5"/>
                 <outlet property="readReceiptWidthConstraint" destination="ziC-M7-ddE" id="s2v-Ls-6Va"/>
+                <outlet property="stackLeadingConstraintEqual" destination="s7q-4Z-wGl" id="t6q-SU-nV6"/>
+                <outlet property="stackLeadingConstraintGreatThenOrEqual" destination="5Uq-6h-qwa" id="vhv-KI-BGK"/>
+                <outlet property="stackTrailingConstraintEqual" destination="uDH-IK-qGE" id="za2-f2-Geq"/>
+                <outlet property="stackTrailingConstraintGreatThenOrEqual" destination="GXc-SU-e3G" id="2W0-J5-dgo"/>
                 <outlet property="text" destination="aQf-8m-OUh" id="O7S-Le-KIR"/>
                 <outlet property="textHeightConstraint" destination="Za6-ue-cn4" id="GzS-um-1zb"/>
-                <outlet property="textLeadingConstraint" destination="t8I-lW-R1z" id="2Ew-6P-Ndh"/>
-                <outlet property="textTrailingConstraint" destination="AxZ-c0-jaD" id="td0-DA-sF4"/>
             </connections>
             <point key="canvasLocation" x="509.60000000000002" y="-292.80359820089956"/>
         </collectionViewCell>
