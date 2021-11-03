@@ -24,20 +24,39 @@ final class SequentialMessageCell: BaseMessageCell, SizingCell {
     @IBOutlet weak var readReceiptButton: UIButton!
 
     @IBOutlet weak var textHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var textLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var textTrailingConstraint: NSLayoutConstraint!
+	
+	@IBOutlet var stackLeadingConstraintEqual: NSLayoutConstraint!
+	@IBOutlet var stackLeadingConstraintGreatThenOrEqual: NSLayoutConstraint!
+	@IBOutlet var stackTrailingConstraintEqual: NSLayoutConstraint!
+	@IBOutlet var stackTrailingConstraintGreatThenOrEqual: NSLayoutConstraint!
     @IBOutlet weak var readReceiptWidthConstraint: NSLayoutConstraint!
-    @IBOutlet weak var readReceiptTrailingConstraint: NSLayoutConstraint!
     var textWidth: CGFloat {
+		let leading = isSender
+			? stackLeadingConstraintGreatThenOrEqual.constant
+			: stackLeadingConstraintEqual.constant
+		let trailing = isSender
+			? stackTrailingConstraintGreatThenOrEqual.constant
+			: stackTrailingConstraintEqual.constant
         return
             messageWidth -
-            textLeadingConstraint.constant -
-            textTrailingConstraint.constant -
+			leading -
+			trailing -
             readReceiptWidthConstraint.constant -
-            readReceiptTrailingConstraint.constant -
             layoutMargins.left -
             layoutMargins.right
     }
+	
+	private var isSender: Bool {
+		get {
+			guard
+				let viewModel = viewModel?.base as? SequentialMessageChatItem,
+				let message = viewModel.message
+			else {
+				return false
+			}
+			return message.userIdentifier == AuthManager.currentUser()?.identifier
+		}
+	}
 
     override var delegate: ChatMessageCellProtocol? {
         didSet {
@@ -59,6 +78,20 @@ final class SequentialMessageCell: BaseMessageCell, SizingCell {
         configure(readReceipt: readReceiptButton)
         updateText()
     }
+	
+	private func configureConstraints() {
+		if isSender {
+			stackLeadingConstraintEqual?.isActive = false
+			stackTrailingConstraintGreatThenOrEqual?.isActive = false
+			stackLeadingConstraintGreatThenOrEqual?.isActive = true
+			stackTrailingConstraintEqual?.isActive = true
+		} else {
+			stackLeadingConstraintGreatThenOrEqual?.isActive = false
+			stackTrailingConstraintEqual?.isActive = false
+			stackLeadingConstraintEqual?.isActive = true
+			stackTrailingConstraintGreatThenOrEqual?.isActive = true
+		}
+	}
 
     func updateText() {
         guard
@@ -67,6 +100,7 @@ final class SequentialMessageCell: BaseMessageCell, SizingCell {
         else {
             return
         }
+		configureConstraints()
 
         if let messageText = MessageTextCacheManager.shared.message(for: message, with: theme) {
             if message.temporary {
@@ -83,9 +117,8 @@ final class SequentialMessageCell: BaseMessageCell, SizingCell {
                 height: .greatestFiniteMagnitude
             )
 
-            textHeightConstraint.constant = text.textView.sizeThatFits(
-                maxSize
-            ).height
+			let height = text.textView.sizeThatFits(maxSize).height
+			textHeightConstraint.constant = height
         }
     }
 
@@ -94,6 +127,11 @@ final class SequentialMessageCell: BaseMessageCell, SizingCell {
         text.message = nil
 		text.isSender = nil
         textHeightConstraint.constant = initialTextHeightConstant
+		
+		stackLeadingConstraintEqual?.isActive = false
+		stackLeadingConstraintGreatThenOrEqual?.isActive = false
+		stackTrailingConstraintEqual?.isActive = false
+		stackTrailingConstraintGreatThenOrEqual?.isActive = false
     }
 }
 

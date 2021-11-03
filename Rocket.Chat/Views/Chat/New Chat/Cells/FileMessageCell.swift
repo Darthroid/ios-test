@@ -20,19 +20,18 @@ class FileMessageCell: BaseMessageCell, SizingCell {
         return cell
     }()
 
-    @IBOutlet weak var avatarContainerView: UIView! {
-        didSet {
-            avatarContainerView.layer.cornerRadius = 4
-            avatarView.frame = avatarContainerView.bounds
-            avatarContainerView.addSubview(avatarView)
-        }
-    }
-
-    @IBOutlet weak var labelDescriptionTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var username: UILabel!
+	@IBOutlet var bubbleLeadingConstraintEqual: NSLayoutConstraint!
+	@IBOutlet var bubbleLeadingConstraintGreatThenOrEqual: NSLayoutConstraint!
+	@IBOutlet var bubbleTrailingConstraintEqual: NSLayoutConstraint!
+	@IBOutlet var bubbleTrailingConstraintGreatThenOrEqual: NSLayoutConstraint!
+	
+	@IBOutlet var statusStackViewTrailing: NSLayoutConstraint!
+	@IBOutlet var statusStackViewLeading: NSLayoutConstraint!
+	
+	@IBOutlet weak var bubbleView: RCBubbleView!
+	@IBOutlet weak var readStatusImageView: UIImageView!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var statusView: UIImageView!
-    @IBOutlet weak var labelDescription: UILabel!
     @IBOutlet weak var fileButton: UIButton! {
         didSet {
             fileButton.titleLabel?.adjustsFontSizeToFitWidth = true
@@ -40,36 +39,55 @@ class FileMessageCell: BaseMessageCell, SizingCell {
             fileButton.titleLabel?.numberOfLines = 2
         }
     }
-    @IBOutlet weak var readReceiptButton: UIButton!
+	
+	private var isSender: Bool {
+		get {
+			guard let viewModel = viewModel?.base as? FileMessageChatItem,
+			let message = viewModel.message else {
+				fatalError()
+				return false
+			}
+			return message.userIdentifier == AuthManager.currentUser()?.identifier
+		}
+	}
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        insertGesturesIfNeeded(with: username)
     }
+	
+	private func configurateBubble() {
+		bubbleView.isSender = self.isSender
+		readStatusImageView.isHidden = !self.isSender
+		if self.isSender {
+			bubbleLeadingConstraintEqual?.isActive = false
+			bubbleTrailingConstraintGreatThenOrEqual?.isActive = false
+			bubbleLeadingConstraintGreatThenOrEqual?.isActive = true
+			bubbleTrailingConstraintEqual?.isActive = true
+			statusStackViewTrailing?.isActive = true
+			statusStackViewLeading?.isActive = false
+		} else {
+			bubbleLeadingConstraintGreatThenOrEqual?.isActive = false
+			bubbleTrailingConstraintEqual?.isActive = false
+			bubbleLeadingConstraintEqual?.isActive = true
+			bubbleTrailingConstraintGreatThenOrEqual?.isActive = true
+			statusStackViewTrailing?.isActive = false
+			statusStackViewLeading?.isActive = true
+		}
+	}
 
     override func configure(completeRendering: Bool) {
         guard let viewModel = viewModel?.base as? FileMessageChatItem else {
             return
         }
 
-        if let description = viewModel.attachment.descriptionText, !description.isEmpty {
-            labelDescription.text = description
-            labelDescriptionTopConstraint.constant = 10
-        } else {
-            labelDescription.text = ""
-            labelDescriptionTopConstraint.constant = 0
-        }
-
-        configure(readReceipt: readReceiptButton)
         configure(
             with: avatarView,
             date: date,
             status: statusView,
-            and: username,
             completeRendering: completeRendering
         )
-
-        fileButton.setTitle(viewModel.attachment.title, for: .normal)
+		configurateBubble()
+        fileButton.setTitle("here "/*viewModel.attachment.title*/, for: .normal)
     }
 
     @IBAction func didTapFileButton() {
@@ -79,6 +97,16 @@ class FileMessageCell: BaseMessageCell, SizingCell {
 
         delegate?.openFileFromCell(attachment: viewModel.attachment)
     }
+	
+	override func prepareForReuse() {
+		super.prepareForReuse()
+		bubbleLeadingConstraintEqual?.isActive = false
+		bubbleLeadingConstraintGreatThenOrEqual?.isActive = false
+		bubbleTrailingConstraintEqual?.isActive = false
+		bubbleTrailingConstraintGreatThenOrEqual?.isActive = false
+		statusStackViewTrailing?.isActive = false
+		statusStackViewLeading?.isActive = false
+	}
 }
 
 extension FileMessageCell {
@@ -87,9 +115,13 @@ extension FileMessageCell {
 
         let theme = self.theme ?? .light
         date.textColor = theme.auxiliaryText
-        username.textColor = theme.titleText
-        labelDescription.textColor = theme.controlText
-        fileButton.backgroundColor = theme.chatComponentBackground
-        fileButton.setTitleColor(theme.titleText, for: .normal)
+		if isSender {
+			fileButton.setTitleColor(theme.senderText, for: .normal)
+		} else {
+			fileButton.setTitleColor(theme.receiverText, for: .normal)
+		}
+//		ThemeManager.theme.senderText
+//		ThemeManager.theme.receiverText
+        
     }
 }

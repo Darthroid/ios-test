@@ -23,26 +23,42 @@ final class BasicMessageCell: BaseMessageCell, SizingCell {
     }()
 
 	@IBOutlet weak var stackView: UIStackView!
-
+	@IBOutlet weak var readStatusImageView: UIImageView!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var statusView: UIImageView!
     @IBOutlet weak var text: RCTextView!
 
-    @IBOutlet weak var readReceiptButton: UIButton!
-
     @IBOutlet weak var textHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var textLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var textTrailingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var readReceiptWidthConstraint: NSLayoutConstraint!
+    @IBOutlet var textLeadingConstraintEqual: NSLayoutConstraint!
+	@IBOutlet var textLeadingConstraintGreatThenOrEqual: NSLayoutConstraint!
+    @IBOutlet var textTrailingConstraintEqual: NSLayoutConstraint!
+	@IBOutlet var textTrailingConstraintGreatThenOrEqual: NSLayoutConstraint!
 
     var textWidth: CGFloat {
-        return
-            messageWidth -
-            textLeadingConstraint.constant -
-            textTrailingConstraint.constant -
+		let leading = isSender
+			? textLeadingConstraintGreatThenOrEqual.constant
+			: textLeadingConstraintEqual.constant
+		let trailing = isSender
+			? textTrailingConstraintGreatThenOrEqual.constant
+			: textTrailingConstraintEqual.constant
+		return messageWidth -
+			leading -
+			trailing -
             layoutMargins.left -
             layoutMargins.right
     }
+	
+	private var isSender: Bool {
+		get {
+			guard
+				let viewModel = viewModel?.base as? BasicMessageChatItem,
+				let message = viewModel.message
+			else {
+				return false
+			}
+			return message.userIdentifier == AuthManager.currentUser()?.identifier
+		}
+	}
 
     override var delegate: ChatMessageCellProtocol? {
         didSet {
@@ -57,6 +73,23 @@ final class BasicMessageCell: BaseMessageCell, SizingCell {
 
         initialTextHeightConstant = textHeightConstraint.constant
     }
+	
+	private func configureConstraints() {
+		readStatusImageView.isHidden = !self.isSender
+		if isSender {
+			self.stackView.alignment = .trailing
+			textLeadingConstraintEqual?.isActive = false
+			textTrailingConstraintGreatThenOrEqual?.isActive = false
+			textLeadingConstraintGreatThenOrEqual?.isActive = true
+			textTrailingConstraintEqual?.isActive = true
+		} else {
+			self.stackView.alignment = .leading
+			textLeadingConstraintGreatThenOrEqual?.isActive = false
+			textTrailingConstraintEqual?.isActive = false
+			textLeadingConstraintEqual?.isActive = true
+			textTrailingConstraintGreatThenOrEqual?.isActive = true
+		}
+	}
 
     override func configure(completeRendering: Bool) {
         configure(
@@ -66,8 +99,6 @@ final class BasicMessageCell: BaseMessageCell, SizingCell {
 			and: nil,
             completeRendering: completeRendering
         )
-
-        configure(readReceipt: readReceiptButton)
         updateText()
     }
 
@@ -78,6 +109,7 @@ final class BasicMessageCell: BaseMessageCell, SizingCell {
         else {
             return
         }
+		configureConstraints()
 
         if let messageText = MessageTextCacheManager.shared.message(for: message, with: theme) {
             if message.temporary {
@@ -93,10 +125,8 @@ final class BasicMessageCell: BaseMessageCell, SizingCell {
                 width: textWidth,
                 height: .greatestFiniteMagnitude
             )
-
-            textHeightConstraint.constant = text.textView.sizeThatFits(
-                maxSize
-            ).height
+			let height = text.textView.sizeThatFits(maxSize).height
+            textHeightConstraint.constant = height
         }
     }
 
@@ -107,6 +137,10 @@ final class BasicMessageCell: BaseMessageCell, SizingCell {
         text.message = nil
         avatarView.prepareForReuse()
         textHeightConstraint.constant = initialTextHeightConstant
+		textLeadingConstraintEqual?.isActive = false
+		textLeadingConstraintGreatThenOrEqual?.isActive = false
+		textTrailingConstraintEqual?.isActive = false
+		textTrailingConstraintGreatThenOrEqual?.isActive = false
     }
 }
 

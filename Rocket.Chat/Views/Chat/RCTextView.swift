@@ -128,6 +128,17 @@ class HighlightLayoutManager: NSLayoutManager {
         configureTextView()
 
         addSubview(textView)
+	
+		textView.translatesAutoresizingMaskIntoConstraints = false
+		let top    = textView.topAnchor.constraint(equalTo: self.topAnchor, constant: 0)
+		let bottom = textView.bottomAnchor.constraint(equalTo: self.topAnchor, constant: 0)
+		let left   = textView.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0)
+		let right  = textView.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0)
+		self.addConstraints([top, bottom, left, right])
+		top.isActive    = true
+		bottom.isActive = true
+		left.isActive   = true
+		right.isActive  = true
     }
 
     private func configureTextView() {
