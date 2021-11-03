@@ -23,19 +23,16 @@ final class BasicMessageCell: BaseMessageCell, SizingCell {
     }()
 
 	@IBOutlet weak var stackView: UIStackView!
-
+	@IBOutlet weak var readStatusImageView: UIImageView!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var statusView: UIImageView!
     @IBOutlet weak var text: RCTextView!
-
-    @IBOutlet weak var readReceiptButton: UIButton!
 
     @IBOutlet weak var textHeightConstraint: NSLayoutConstraint!
     @IBOutlet var textLeadingConstraintEqual: NSLayoutConstraint!
 	@IBOutlet var textLeadingConstraintGreatThenOrEqual: NSLayoutConstraint!
     @IBOutlet var textTrailingConstraintEqual: NSLayoutConstraint!
 	@IBOutlet var textTrailingConstraintGreatThenOrEqual: NSLayoutConstraint!
-    @IBOutlet weak var readReceiptWidthConstraint: NSLayoutConstraint!
 
     var textWidth: CGFloat {
 		let leading = isSender
@@ -78,12 +75,15 @@ final class BasicMessageCell: BaseMessageCell, SizingCell {
     }
 	
 	private func configureConstraints() {
+		readStatusImageView.isHidden = !self.isSender
 		if isSender {
+			self.stackView.alignment = .trailing
 			textLeadingConstraintEqual?.isActive = false
 			textTrailingConstraintGreatThenOrEqual?.isActive = false
 			textLeadingConstraintGreatThenOrEqual?.isActive = true
 			textTrailingConstraintEqual?.isActive = true
 		} else {
+			self.stackView.alignment = .leading
 			textLeadingConstraintGreatThenOrEqual?.isActive = false
 			textTrailingConstraintEqual?.isActive = false
 			textLeadingConstraintEqual?.isActive = true
@@ -99,8 +99,6 @@ final class BasicMessageCell: BaseMessageCell, SizingCell {
 			and: nil,
             completeRendering: completeRendering
         )
-	
-        configure(readReceipt: readReceiptButton)
         updateText()
     }
 

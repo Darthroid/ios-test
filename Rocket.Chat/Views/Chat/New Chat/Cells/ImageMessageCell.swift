@@ -25,9 +25,14 @@ class ImageMessageCell: BaseImageMessageCell, SizingCell {
 	@IBOutlet var bubbleLeadingConstraintGreatThenOrEqual: NSLayoutConstraint!
 	@IBOutlet var bubbleTrailingConstraintEqual: NSLayoutConstraint!
 	@IBOutlet var bubbleTrailingConstraintGreatThenOrEqual: NSLayoutConstraint!
+	
+	@IBOutlet var statusStackViewTrailing: NSLayoutConstraint!
+	@IBOutlet var statusStackViewLeading: NSLayoutConstraint!
+	
 	@IBOutlet weak var bubbleWidth: NSLayoutConstraint!
 
 	@IBOutlet weak var bubbleView: RCBubbleView!
+	@IBOutlet weak var readStatusImageView: UIImageView!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var statusView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -56,16 +61,21 @@ class ImageMessageCell: BaseImageMessageCell, SizingCell {
 		bubbleView.frame = bubbleView.frame.insetBy(dx: -1, dy: -1)
 		bubbleView.isSender = self.isSender
 		bubbleView.layer.borderWidth = 1
+		readStatusImageView.isHidden = !self.isSender
 		if self.isSender {
 			bubbleLeadingConstraintEqual?.isActive = false
 			bubbleTrailingConstraintGreatThenOrEqual?.isActive = false
 			bubbleLeadingConstraintGreatThenOrEqual?.isActive = true
 			bubbleTrailingConstraintEqual?.isActive = true
+			statusStackViewTrailing?.isActive = true
+			statusStackViewLeading?.isActive = false
 		} else {
 			bubbleLeadingConstraintGreatThenOrEqual?.isActive = false
 			bubbleTrailingConstraintEqual?.isActive = false
 			bubbleLeadingConstraintEqual?.isActive = true
 			bubbleTrailingConstraintGreatThenOrEqual?.isActive = true
+			statusStackViewTrailing?.isActive = false
+			statusStackViewLeading?.isActive = true
 		}
 	}
 	
@@ -112,6 +122,8 @@ class ImageMessageCell: BaseImageMessageCell, SizingCell {
 		bubbleLeadingConstraintGreatThenOrEqual?.isActive = false
 		bubbleTrailingConstraintEqual?.isActive = false
 		bubbleTrailingConstraintGreatThenOrEqual?.isActive = false
+		statusStackViewTrailing?.isActive = false
+		statusStackViewLeading?.isActive = false
 		
 	}
 }

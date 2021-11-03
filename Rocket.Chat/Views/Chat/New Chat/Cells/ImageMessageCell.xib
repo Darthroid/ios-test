@@ -45,24 +45,31 @@
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="PMT-w1-rX6">
-                        <rect key="frame" x="355" y="265" width="52" height="14"/>
+                        <rect key="frame" x="20" y="265" width="387" height="20"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Label" lineBreakMode="tailTruncation" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TSF-fA-OzI">
-                                <rect key="frame" x="0.0" y="0.0" width="31" height="14"/>
+                                <rect key="frame" x="0.0" y="0.0" width="333" height="20"/>
                                 <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                 <color key="textColor" red="0.69411764710000001" green="0.72549019609999998" blue="0.70588235290000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Exclamation" translatesAutoresizingMaskIntoConstraints="NO" id="bWW-kD-9XM">
-                                <rect key="frame" x="38" y="0.0" width="14" height="14"/>
+                                <rect key="frame" x="340" y="0.0" width="20" height="20"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="14" id="aUz-8V-48U"/>
-                                    <constraint firstAttribute="height" constant="14" id="rOg-ln-0wz"/>
+                                    <constraint firstAttribute="width" constant="20" id="aUz-8V-48U"/>
+                                    <constraint firstAttribute="height" constant="20" id="rOg-ln-0wz"/>
+                                </constraints>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Unread" translatesAutoresizingMaskIntoConstraints="NO" id="f9k-79-RfM">
+                                <rect key="frame" x="367" y="0.0" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="29F-U8-ely"/>
+                                    <constraint firstAttribute="width" constant="20" id="tWD-t2-Kbu"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="height" constant="14" id="5Zq-hq-Trz"/>
+                            <constraint firstAttribute="height" constant="20" id="5Zq-hq-Trz"/>
                         </constraints>
                     </stackView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VkS-Ct-oBj">
@@ -87,6 +94,7 @@
                 <constraint firstItem="Rr4-iv-zl6" firstAttribute="top" secondItem="bhW-bN-FTV" secondAttribute="top" constant="5" id="g2P-dm-F94"/>
                 <constraint firstItem="bhW-bN-FTV" firstAttribute="bottom" secondItem="PMT-w1-rX6" secondAttribute="bottom" constant="10" id="t2C-em-Wlg"/>
                 <constraint firstAttribute="trailing" secondItem="Rr4-iv-zl6" secondAttribute="trailing" constant="20" id="t3X-Pc-BBw" userLabel="trailing = 20"/>
+                <constraint firstItem="PMT-w1-rX6" firstAttribute="leading" secondItem="Rr4-iv-zl6" secondAttribute="leading" id="wyA-CI-AEJ"/>
                 <constraint firstItem="VkS-Ct-oBj" firstAttribute="top" secondItem="bhW-bN-FTV" secondAttribute="top" id="yQd-Vt-rR6"/>
             </constraints>
             <size key="customSize" width="427" height="121"/>
@@ -100,6 +108,9 @@
                 <outlet property="bubbleWidth" destination="8Fb-LA-9TX" id="6l0-7v-v3j"/>
                 <outlet property="date" destination="TSF-fA-OzI" id="aL1-zN-HB7"/>
                 <outlet property="imageView" destination="qbH-Cx-iaB" id="DrK-gk-0nu"/>
+                <outlet property="readStatusImageView" destination="f9k-79-RfM" id="WHI-yr-H3D"/>
+                <outlet property="statusStackViewLeading" destination="wyA-CI-AEJ" id="leu-vN-egc"/>
+                <outlet property="statusStackViewTrailing" destination="frQ-Dd-ZN9" id="mgl-Ag-dzh"/>
                 <outlet property="statusView" destination="bWW-kD-9XM" id="Nvc-x3-VKq"/>
             </connections>
             <point key="canvasLocation" x="468" y="-258.17091454272867"/>
@@ -107,6 +118,7 @@
     </objects>
     <resources>
         <image name="Exclamation" width="20" height="20"/>
+        <image name="Unread" width="15" height="9"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
