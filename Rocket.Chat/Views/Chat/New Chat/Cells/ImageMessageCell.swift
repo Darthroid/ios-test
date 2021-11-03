@@ -21,64 +21,67 @@ class ImageMessageCell: BaseImageMessageCell, SizingCell {
         return cell
     }()
 
-    @IBOutlet weak var labelDescriptionTopConstraint: NSLayoutConstraint!
-    @IBOutlet weak var avatarContainerView: UIView! {
-        didSet {
-            avatarContainerView.layer.cornerRadius = 4
-            avatarView.frame = avatarContainerView.bounds
-            avatarContainerView.addSubview(avatarView)
-        }
-    }
+	@IBOutlet var bubbleLeadingConstraintEqual: NSLayoutConstraint!
+	@IBOutlet var bubbleLeadingConstraintGreatThenOrEqual: NSLayoutConstraint!
+	@IBOutlet var bubbleTrailingConstraintEqual: NSLayoutConstraint!
+	@IBOutlet var bubbleTrailingConstraintGreatThenOrEqual: NSLayoutConstraint!
+	@IBOutlet weak var bubbleWidth: NSLayoutConstraint!
 
-    @IBOutlet weak var username: UILabel!
+	@IBOutlet weak var bubbleView: RCBubbleView!
     @IBOutlet weak var date: UILabel!
     @IBOutlet weak var statusView: UIImageView!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var imageView: FLAnimatedImageView! {
         didSet {
-            imageView.layer.cornerRadius = 4
-            imageView.layer.borderWidth = 1
             imageView.clipsToBounds = true
         }
     }
 
-    @IBOutlet weak var readReceiptButton: UIButton!
-    @IBOutlet weak var labelTitle: UILabel!
-    @IBOutlet weak var labelDescription: UILabel!
-
+	private var isSender: Bool {
+		get {
+			guard let viewModel = viewModel?.base as? ImageMessageChatItem,
+			let message = viewModel.message else {
+				fatalError()
+				return false
+			}
+			return message.userIdentifier == AuthManager.currentUser()?.identifier
+		}
+	}
+	
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        setupWidthConstraint()
-        insertGesturesIfNeeded(with: username)
     }
 
+	private func configurateBubble() {
+		bubbleView.frame = bubbleView.frame.insetBy(dx: -1, dy: -1)
+		bubbleView.isSender = self.isSender
+		bubbleView.layer.borderWidth = 1
+		if self.isSender {
+			bubbleLeadingConstraintEqual?.isActive = false
+			bubbleTrailingConstraintGreatThenOrEqual?.isActive = false
+			bubbleLeadingConstraintGreatThenOrEqual?.isActive = true
+			bubbleTrailingConstraintEqual?.isActive = true
+		} else {
+			bubbleLeadingConstraintGreatThenOrEqual?.isActive = false
+			bubbleTrailingConstraintEqual?.isActive = false
+			bubbleLeadingConstraintEqual?.isActive = true
+			bubbleTrailingConstraintGreatThenOrEqual?.isActive = true
+		}
+	}
+	
     override func configure(completeRendering: Bool) {
         guard let viewModel = viewModel?.base as? ImageMessageChatItem else {
             return
         }
-
-        widthConstriant.constant = messageWidth
-
-        configure(readReceipt: readReceiptButton)
+		
+		bubbleWidth.constant = messageWidth * 2 / 3
         configure(
             with: avatarView,
             date: date,
             status: statusView,
-            and: username,
             completeRendering: completeRendering
         )
-
-        labelTitle.text = viewModel.title
-
-        if let description = viewModel.descriptionText, !description.isEmpty {
-            labelDescription.text = description
-            labelDescriptionTopConstraint.constant = 10
-        } else {
-            labelDescription.text = ""
-            labelDescriptionTopConstraint.constant = 0
-        }
-
+		
         if completeRendering {
             loadImage(on: imageView, startLoadingBlock: { [weak self] in
                 self?.activityIndicator.startAnimating()
@@ -86,6 +89,8 @@ class ImageMessageCell: BaseImageMessageCell, SizingCell {
                 self?.activityIndicator.stopAnimating()
             })
         }
+		
+		self.configurateBubble()
     }
 
     // MARK: IBAction
@@ -100,6 +105,15 @@ class ImageMessageCell: BaseImageMessageCell, SizingCell {
 
         delegate?.openImageFromCell(url: imageURL, thumbnail: imageView)
     }
+	
+	override func prepareForReuse() {
+		super.prepareForReuse()
+		bubbleLeadingConstraintEqual?.isActive = false
+		bubbleLeadingConstraintGreatThenOrEqual?.isActive = false
+		bubbleTrailingConstraintEqual?.isActive = false
+		bubbleTrailingConstraintGreatThenOrEqual?.isActive = false
+		
+	}
 }
 
 extension ImageMessageCell {
@@ -107,10 +121,7 @@ extension ImageMessageCell {
         super.applyTheme()
 
         let theme = self.theme ?? .light
-        username.textColor = theme.titleText
-        date.textColor = theme.auxiliaryText
-        labelTitle.textColor = theme.bodyText
-        labelDescription.textColor = theme.bodyText
-        imageView.layer.borderColor = theme.borderColor.cgColor
+        bubbleView.layer.borderColor = theme.borderColor.cgColor
+		date.textColor = theme.auxiliaryText
     }
 }

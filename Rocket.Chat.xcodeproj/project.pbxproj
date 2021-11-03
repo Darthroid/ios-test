@@ -456,6 +456,7 @@
 		77C2612D1F97453600724A1F /* SelectFieldSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2612A1F97453600724A1F /* SelectFieldSpec.swift */; };
 		77C2612E1F97453600724A1F /* TextFieldSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C2612B1F97453600724A1F /* TextFieldSpec.swift */; };
 		77CCB6BE1F8D0597004BBF67 /* DictionaryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CCB6BD1F8D0597004BBF67 /* DictionaryExtensions.swift */; };
+		786FEE9A2731631D005D58F8 /* RCBubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 786FEE992731631C005D58F8 /* RCBubbleView.swift */; };
 		80054CF11FD9505A00F5ECF9 /* SendMessageRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80054CF01FD9505A00F5ECF9 /* SendMessageRequest.swift */; };
 		80054CF31FD951B100F5ECF9 /* MessagesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80054CF21FD951B100F5ECF9 /* MessagesClient.swift */; };
 		80054CF51FD96AFE00F5ECF9 /* MessagesClientSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80054CF41FD96AFE00F5ECF9 /* MessagesClientSpec.swift */; };
@@ -1463,6 +1464,7 @@
 		77C2612A1F97453600724A1F /* SelectFieldSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectFieldSpec.swift; sourceTree = "<group>"; };
 		77C2612B1F97453600724A1F /* TextFieldSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldSpec.swift; sourceTree = "<group>"; };
 		77CCB6BD1F8D0597004BBF67 /* DictionaryExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DictionaryExtensions.swift; sourceTree = "<group>"; };
+		786FEE992731631C005D58F8 /* RCBubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RCBubbleView.swift; sourceTree = "<group>"; };
 		80054CF01FD9505A00F5ECF9 /* SendMessageRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessageRequest.swift; sourceTree = "<group>"; };
 		80054CF21FD951B100F5ECF9 /* MessagesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesClient.swift; sourceTree = "<group>"; };
 		80054CF41FD96AFE00F5ECF9 /* MessagesClientSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesClientSpec.swift; sourceTree = "<group>"; };
@@ -3214,6 +3216,7 @@
 				339B6929205042D300F97392 /* KeyboardFrameView.swift */,
 				1435BFA21F9B601600FB2768 /* RCTextView.swift */,
 				DB926AFC21FA0AEE0046F53F /* ChatAnnouncementView.swift */,
+				786FEE992731631C005D58F8 /* RCBubbleView.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -5357,6 +5360,7 @@
 				99923773204B3BD800C2D15F /* UploadAvatarRequest.swift in Sources */,
 				1496A87920FA4736005C2E14 /* EnumExtensions.swift in Sources */,
 				809B530B1FE2B1AB00833DD2 /* UploadClient.swift in Sources */,
+				786FEE9A2731631D005D58F8 /* RCBubbleView.swift in Sources */,
 				1496A88020FA4890005C2E14 /* NotificationPreferences.swift in Sources */,
 				8052F75C20B7529800B3B0CF /* UIAlertActionTitleTextAlignment.swift in Sources */,
 				99D77C6B20E474BF008F2438 /* AnalyticsManager.swift in Sources */,
